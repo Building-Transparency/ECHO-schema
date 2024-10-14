@@ -1,0 +1,22 @@
+{
+  "name": "echo-schema",
+  "license": "Apache-2.0",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": ""
+  },
+  "engines": {
+    "node": "22.9.0"
+  },
+  "files": [
+    "/dist"
+  ],
+  "dependencies": {
+    "zod": "3.23.8",
+    "libphonenumber-js": "1.11.11"
+  }
+}
