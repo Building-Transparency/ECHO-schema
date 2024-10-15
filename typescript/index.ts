@@ -8,6 +8,87 @@ import * as Z from './utilities';
 // 3. determine approach to recommended vs optional (show warnings?)
 // 4. determine approach to string lengths exceeding recommended limit (show warnings?)
 // 5. determine which numerical fields must be positive and which could be zero
+// 6. determine capitalization (e.g. GWP, A4, ASHRAE, RICS, EC)
+// 7. confirm approach to nested schemas for impacts and EUIs by fuel type and end use
+
+// #region SUBSCHEMAS
+
+export const ImpactSchema = z.object({
+  GWP_A0: Z.NumOrNull,
+  GWP_A1A3_fossil: Z.NumOrNull,
+  GWP_A1A3_bio_emissions: Z.NumOrNull,
+  GWP_A1A3_bio_storage: Z.NumOrNull,
+  GWP_A4_fossil: Z.NumOrNull,
+  GWP_A4_bio_emissions: Z.NumOrNull,
+  GWP_A4_bio_storage: Z.NumOrNull,
+  GWP_A5_fossil: Z.NumOrNull,
+  GWP_A5_bio_emissions: Z.NumOrNull,
+  GWP_A5_bio_storage: Z.NumOrNull,
+  GWP_A5_1_fossil: Z.NumOrNull.describe("A5.1 Pre-Construction Demolition includes Demolition/ deconstruction of existing buildings and structures, and/ or parts thereof, including transport from site and waste processing of removed materials."),
+  GWP_A5_1_bio_emissions: Z.NumOrNull,
+  GWP_A5_1_bio_storage: Z.NumOrNull,
+  GWP_A5_2_fossil: Z.NumOrNull.describe("A5.2 Construction Activities includes Site preparation; temporary works; ground works; connection to utilities; transport and onsite storage of construction products, materials and equipment; onsite production/assembly of products; works for the installation and ancillary materials (e.g. formworks and their disposal); heating/ cooling/ventilation of site facilities; energy and water use for construction processes and landscaping"),
+  GWP_A5_2_bio_emissions: Z.NumOrNull,
+  GWP_A5_2_bio_storage: Z.NumOrNull,
+  GWP_A5_3_fossil: Z.NumOrNull.describe("A5.3 Waste and Waste Management includes Production, transportation, storage and end-of-life treatment and disposal of any material/waste onsite; transport, waste management and disposal of packing materials."),
+  GWP_A5_3_bio_emissions: Z.NumOrNull,
+  GWP_A5_3_bio_storage: Z.NumOrNull,
+  GWP_A5_4_fossil: Z.NumOrNull.describe("A5.4 Worker Transport includes emissions of site workers traveling to and from site."),
+  GWP_A5_4_bio_emissions: Z.NumOrNull,
+  GWP_A5_4_bio_storage: Z.NumOrNull,
+  GWP_B1_fossil: Z.NumOrNull,
+  GWP_B1_bio_emissions: Z.NumOrNull,
+  GWP_B1_bio_storage: Z.NumOrNull,
+  GWP_B2_fossil: Z.NumOrNull,
+  GWP_B2_bio_emissions: Z.NumOrNull,
+  GWP_B2_bio_storage: Z.NumOrNull,
+  GWP_B3_fossil: Z.NumOrNull,
+  GWP_B3_bio_emissions: Z.NumOrNull,
+  GWP_B3_bio_storage: Z.NumOrNull,
+  GWP_B4_fossil: Z.NumOrNull,
+  GWP_B4_bio_emissions: Z.NumOrNull,
+  GWP_B4_bio_storage: Z.NumOrNull,
+  GWP_B5_fossil: Z.NumOrNull,
+  GWP_B5_bio_emissions: Z.NumOrNull,
+  GWP_B5_bio_storage: Z.NumOrNull,
+  GWP_B6_fossil: Z.NumOrNull,
+  GWP_B6_bio_emissions: Z.NumOrNull,
+  GWP_B6_bio_storage: Z.NumOrNull,
+  GWP_B7_fossil: Z.NumOrNull,
+  GWP_B7_bio_emissions: Z.NumOrNull,
+  GWP_B7_bio_storage: Z.NumOrNull,
+  GWP_B8_fossil: Z.NumOrNull,
+  GWP_B8_bio_emissions: Z.NumOrNull,
+  GWP_B8_bio_storage: Z.NumOrNull,
+  GWP_C1_fossil: Z.NumOrNull,
+  GWP_C1_bio_emissions: Z.NumOrNull,
+  GWP_C1_bio_storage: Z.NumOrNull,
+  GWP_C2_fossil: Z.NumOrNull,
+  GWP_C2_bio_emissions: Z.NumOrNull,
+  GWP_C2_bio_storage: Z.NumOrNull,
+  GWP_C3_fossil: Z.NumOrNull,
+  GWP_C3_bio_emissions: Z.NumOrNull,
+  GWP_C3_bio_storage: Z.NumOrNull,
+  GWP_C4_fossil: Z.NumOrNull,
+  GWP_C4_bio_emissions: Z.NumOrNull,
+  GWP_C4_bio_storage: Z.NumOrNull,
+  GWP_D_fossil: Z.NumOrNull,
+  GWP_D_bio_emissions: Z.NumOrNull,
+  GWP_D_bio_storage: Z.NumOrNull,
+});
+export const ImpactSchemaOrNull = ImpactSchema.nullable().default(null);
+
+export const EuiByFuelType = z.object({
+  value: Z.Num.describe('Value in kBtu/ft2'),
+  fuel_type: Enum.FuelTypes
+});
+
+export const EuiByEndUse = z.object({
+  value: Z.Num.describe('Value in kBtu/ft2'),
+  end_use: Enum.EndUses
+});
+
+// #endregion
 
 export const ProjectData = z.object({
   id: Z.IdDefault,
@@ -24,7 +105,7 @@ export const ProjectData = z.object({
   plus_code: Z.Str.array().default([]),
   project_address: Z.StrOrNull.describe("Project address"),
   // TODO: recommend removing in favor of sepate lat lon with independent validation, perhaps nested under location schema
-  // latlng: StrOrNull.describe("The geographic coordinates of the project. Latitude and Longitude auto-populated"),
+  // latlng: Z.StrOrNull.describe("The geographic coordinates of the project. Latitude and Longitude auto-populated"),
   project_address_lookup: Z.AddressLookupOrNull.describe("Project address lookup"),
   project_location_city: Z.StrOrNull.describe("Project city"),
   project_state_or_province: Z.StrOrNull.describe("Project state"),
@@ -221,11 +302,71 @@ export const ProjectData = z.object({
   qa_user_notes: Z.StrOrNull.describe("List any other notes about the model content or quality that might be helpful for conducting QA"),
 
   // #endregion
+  // #region COMPLIANCE & VERIFICATION
 
-  // TODO: REMAINING
-  // 1. Post Construction Verification
-  // 2. Carbon Assessment Results
-  // 3. Reduction Strategies
+  // TODO: confirm these should all be booleans as worded (but not documented) in Google sheets
+  assessment_21931_compliance: Z.BoolOrNull.describe("Whether or not assessment is compliant with ISO21931"),
+  assessment_15978_compliance: Z.BoolOrNull.describe("Whether or not assessment is compliant with BS/EN 15978"),
+  assessment_RICS_2017_compliance: Z.BoolOrNull.describe("Whether or not assessment is compliant with RICS Whole Life Carbon PS, 2017 version"),
+  assessment_RICS_2023_compliance: Z.BoolOrNull.describe("Whether or not assessment is compliant with RICS Whole Life Carbon PS, 2023 version"),
+  assessment_ASHRAE_240P_compliance: Z.BoolOrNull.describe("Whether or not assessment is compliant with ASHRAE 240P"),
+  assessment_verified: Z.BoolOrNull.describe("Whether or not assessment has been third-party verified"),
+  assessment_verified_info: Z.StrOrNull.describe("Information of third-party verifier"),
+  assessment_validity_period: Z.StrOrNull.describe("Period for which assessment is valid (in years)"),
+  assessment_EC_CWCT: Z.BoolOrNull.describe("Whether or not the assessment was conducted in accordance with CWCT's 'How to calculate embodied carbon of facades'"),
+  assessment_EC_TM65: Z.BoolOrNull.describe("Whether or not the assessment was conducted in accordance with CIBSE TM65"),
+  assessment_EC_contingency_uncertainty: Z.NumOrNull.describe("Whether or not a carbon contingency or uncertainty factor has been included in the calculation, in %"),
+
+  results_validated_as_built: Z.BoolOrNull.describe("Have these results and material quantities been validated with as-built information?"),
+  results_validated_as_built_description: Z.StrOrNull.describe("How were these results and material quantities validated?"),
+
+  // #endregion
+  // #region CARBON ASSESSMENT RESULTS
+
+  GWP_total: Z.NumOrNull.describe("Total project GWP in kilograms of CO2 equivalent, excluding biogenic carbon"),
+  GWP_total_site_area: Z.NumOrNull.describe("kg CO2e"),
+  GWP_intensity_per__building_area: Z.NumOrNull.describe("kg CO2e/m2"),
+  GWP_intensity_per_site_area: Z.NumOrNull.describe("kg CO2e/m2"),
+  reduction_baseline: Z.StrOrNull.describe("If a baseline scenario assessment was conducted, enter the total GWP of the baseline model here."),
+  GWP_reduction_percentage_from_referenced_baseline: Z.NumOrNull.describe("Percent reduction from a baseline (if applicable)"),
+
+
+  // #endregion
+  // #region IMPACTS
+
+  substructure: ImpactSchemaOrNull,
+  shell_superstructure: ImpactSchemaOrNull,
+  shell_exterior_enclosure: ImpactSchemaOrNull,
+  interior_construction: ImpactSchemaOrNull,
+  interior_finishes: ImpactSchemaOrNull,
+  services_mep: ImpactSchemaOrNull,
+  sitework: ImpactSchemaOrNull,
+  equipement_furnishings: ImpactSchemaOrNull,
+  infrastructure: ImpactSchemaOrNull,
+
+  eui_overall_predicted_building_kbtu_per_sq_ft: Z.NumOrNull,
+  euis_by_fuel_type: EuiByFuelType.array().default([]),
+  euis_by_end_use: EuiByEndUse.array().default([]),
+
+  // #endregion
+  // #region REDUCTION STRATEGIES
+
+  embodied_carbon_reductions_pursued: Z.BoolOrNull,
+  building_reuse: Z.BoolOrNull,
+  // TODO: dropdown?
+  assessment_ec_reuse: Z.BoolOrNull,
+  material_reuse: Z.BoolOrNull,
+  material_Swap: Z.BoolOrNull,
+  alternate_structural_system: Z.BoolOrNull,
+  structural_biobased_materials: Z.BoolOrNull,
+  non_structural_biobased_materials: Z.BoolOrNull,
+  structural_element_optimization: Z.BoolOrNull,
+  concrete_mix_optimization: Z.BoolOrNull,
+  exterior_envelope_optimization: Z.BoolOrNull,
+  interior_finishes_optimization: Z.BoolOrNull,
+  other_reductions: Z.StrOrNull,
+  reductions_description: Z.StrOrNull,
+
   // 4. Testing
 
 });
