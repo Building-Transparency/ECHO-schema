@@ -1535,3 +1535,31 @@ export const EndUses = z.enum([
   "Fans Parking Garage",
   "Pumps"
 ]);
+
+export const OmniClassTable11Uses = z.enum([
+  // TODO: fill out full list of available options
+  // https://classes.engr.oregonstate.edu/cce/winter2018/cce203/NBIMS-US_V3/NBIMS-US_V3_2.4.4.1_OmniClass_Table_11_Construction_Entities_by_Function.pdf
+  "Assembly Facility"
+]);
+
+export const WaterTypes = z.enum([
+  "Potable",
+  "Reclaimed",
+  "Wastewater",
+  "Other",
+]);
+
+export const ReductionStrategies = z.enum([
+  "Building Reuse",
+  "Material_Reuse",
+  "Material Swap",
+  "Alternate Structural System",
+  "Structural Biobased Materials",
+  "Non-structural Biobased Materials",
+  "Structural Element Optimization",
+  "Concrete Mix Optimization",
+  "Exterior Envelope Optimization",
+  "Interior Finishes Optimization",
+  "Other Reductions",
+  "Reductions Description",
+]);
