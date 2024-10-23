@@ -1,5 +1,7 @@
 import { z } from 'zod';
 import phoneParse from "libphonenumber-js";
+// @ts-ignore
+import { randomUUID } from 'node:crypto';
 
 export const Any = z.any();
 export const Str = z.string();
@@ -12,7 +14,7 @@ export const EmailOrNull = Email.nullable().default(null);
 export const AddressLookup = Str;
 export const AddressLookupOrNull = AddressLookup.nullable().default(null);
 export const Id = Str.uuid();
-export const IdDefault = Id.default(crypto.randomUUID);
+export const IdDefault = Id.default(randomUUID);
 export const DateISO = z.string().date();
 export const DateISODefault = DateISO.default(() => (new Date()).toISOString().slice(0, 10));
 export const DateISOOrNull = DateISO.nullable().default(null);
@@ -30,7 +32,7 @@ export const Bool = z.boolean();
 export const BoolOrNull = Bool.nullable().default(null);
 export const BoolDefaultTrue = Bool.default(true);
 export const BoolDefaultFalse = Bool.default(false);
-export const Phone = z.string().transform((args, ctx) => {
+export const Phone = Str.transform((args, ctx) => {
   // https://github.com/colinhacks/zod/issues/3378#issuecomment-2067591844
   const phone = phoneParse(args, { defaultCountry: "US" });
   if (!phone?.isValid()) {
