@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "srcDir": "./src",
     "outDir": "./dist",
     "strict": true
   }

@@ -7,6 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "gen": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/schema-gen.ts",
     "test": ""
   },
   "engines": {
@@ -17,6 +18,12 @@
   ],
   "dependencies": {
     "zod": "3.23.8",
-    "libphonenumber-js": "1.11.11"
+    "libphonenumber-js": "1.11.12"
+  },
+  "devDependencies": {
+    "@types/node": "22.7.9",
+    "typescript": "5.6.3",
+    "ts-node": "10.9.2",
+    "zod-to-json-schema": "3.23.3"
   }
 }
