@@ -398,8 +398,7 @@ export const InteriorConstructionScope = z.enum([
   "Interior Windows",
   "Interior Doors",
   "Interior Grilles and Gates",
-  " Raised Floor Construction",
-  "Suspended Ceiling Construction",
+  "Raised Floor Construction",
   "Suspended Ceiling Construction",
   "Other",
 ]);
