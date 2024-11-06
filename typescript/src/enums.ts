@@ -221,6 +221,7 @@ export const SystemFoundationType = z.enum([
   "Other Foundation System"
 ]);
 
+// TODO: consolidate with ProjectPhaseReporting and use consistent capitalization
 export const ProjectPhase = z.enum([
   "existing condition",
   "concept/planning",
