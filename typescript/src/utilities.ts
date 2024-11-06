@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import phoneParse from "libphonenumber-js";
-const randomUUID = self.crypto.randomUUID;
+// TODO: determine whether we can eliminate uuid dependency
+// by using side by side in browser and Node, respectively: 
+// - const { randomUUID } = self.crypto;
+// - import { randomUUID } from 'node:crypto';
+import { v4 as uuid } from 'uuid';
 
 export const Any = z.any();
 export const Str = z.string();
@@ -13,7 +17,7 @@ export const EmailOrNull = Email.nullable().default(null);
 export const AddressLookup = Str;
 export const AddressLookupOrNull = AddressLookup.nullable().default(null);
 export const Id = Str.uuid();
-export const IdDefault = Id.default(randomUUID);
+export const IdDefault = Id.default(uuid);
 export const DateISO = z.string().date();
 export const DateISODefault = DateISO.default(() => (new Date()).toISOString().slice(0, 10));
 export const DateISOOrNull = DateISO.nullable().default(null);

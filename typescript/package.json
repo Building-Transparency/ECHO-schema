@@ -17,11 +17,13 @@
     "/dist"
   ],
   "dependencies": {
+    "uuid": "11.0.2",
     "zod": "3.23.8",
     "libphonenumber-js": "1.11.12"
   },
   "devDependencies": {
     "@types/node": "22.7.9",
+    "@types/uuid": "10.0.0",
     "typescript": "5.6.3",
     "ts-node": "10.9.2",
     "zod-to-json-schema": "3.23.3"
