@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import phoneParse from "libphonenumber-js";
-// @ts-ignore
-import { randomUUID } from 'node:crypto';
+const randomUUID = self.crypto.randomUUID;
 
 export const Any = z.any();
 export const Str = z.string();
