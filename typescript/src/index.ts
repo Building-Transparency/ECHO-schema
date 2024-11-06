@@ -1,6 +1,7 @@
 import { z } from "zod";
-import * as Enum from "./enums";
+import * as E from "./enums";
 import * as Z from './utilities';
+export const Enum = E;
 
 // TODO:
 // 1. refactor address/location into nested subschema
