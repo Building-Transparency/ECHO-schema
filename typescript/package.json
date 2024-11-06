@@ -11,7 +11,7 @@
     "test": ""
   },
   "engines": {
-    "node": "22.9.0"
+    "node": "22.11.0"
   },
   "files": [
     "/dist"
@@ -19,13 +19,13 @@
   "dependencies": {
     "uuid": "11.0.2",
     "zod": "3.23.8",
-    "libphonenumber-js": "1.11.12"
+    "libphonenumber-js": "1.11.13"
   },
   "devDependencies": {
-    "@types/node": "22.7.9",
+    "@types/node": "22.9.0",
     "@types/uuid": "10.0.0",
     "typescript": "5.6.3",
     "ts-node": "10.9.2",
-    "zod-to-json-schema": "3.23.3"
+    "zod-to-json-schema": "3.23.5"
   }
 }
