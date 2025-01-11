@@ -1,4 +1,35 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://buildingtransparency.org/echo/v1.0/schema.json",
+  "title": "Nested_ECHO",
+  "description": "ECHO schema in nested format.",
+  "type": "object",
+  "definitions": {
+    "iso_date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "A date in ISO 8601 format (YYYY-MM-DD).",
+      "examples": ["2023-01-01", "1999-12-31"]
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "description": "A valid email address following the standard email format.",
+      "examples": ["user@example.com", "admin@subdomain.example.org"]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https?://[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*)$",
+      "description": "A valid URL following the standard URI format. Must include http:// or https://.",
+      "examples": [
+        "https://example.com",
+        "http://subdomain.example.org/path?query=param#fragment"
+      ]
+    }
+  },
   "$defs": {
     "response_B6": {
       "properties": {
@@ -1149,11 +1180,13 @@
       "type": "object"
     },
     "response_LCAInformation": {
+      "title": "response_LCAInformation",
+      "type": "object",
       "properties": {
         "tool_report_upload": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/definitions/url"
             },
             {
               "type": "null"
@@ -1162,174 +1195,6 @@
           "default": null,
           "description": "Upload report from LCA tool. Recommended.",
           "title": "Tool Report Upload"
-        },
-        "assessment_year": {
-          "description": "Year when LCA or carbon assessment was completed. Required.",
-          "maximum": 2200,
-          "minimum": 1800,
-          "title": "Assessment Year",
-          "type": "integer"
-        },
-        "assessment_date": {
-          "anyOf": [
-            {
-              "format": "date",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Date of assessment. Year must be provided at a minimum. Month and day recommended.",
-          "title": "Assessment Date"
-        },
-        "project_phase_at_time_of_assessment": {
-          "description": "Phase of the project when the LCA or carbon assessment was completed. Required.",
-          "enum": [
-            "existing condition",
-            "concept/planning",
-            "schematic design",
-            "design development",
-            "construction documentation",
-            "construction (administration)",
-            "as-built",
-            "in-use"
-          ],
-          "title": "Project Phase At Time Of Assessment",
-          "type": "string"
-        },
-        "tool_lca": {
-          "description": "Tool used to conduct the assessment. Required.",
-          "enum": [
-            "Athena IE",
-            "Beacon",
-            "BEAM",
-            "Build Carbon Neutral",
-            "CARE Tool",
-            "Carbon Conscience",
-            "cove.tool",
-            "EC3",
-            "EPIC",
-            "Embodied Carbon Order of Magnitude (ECOM)",
-            "eTOOL",
-            "OneClick LCA",
-            "Pathfinder",
-            "Simapro",
-            "tallyLCA",
-            "Other"
-          ],
-          "title": "Tool Lca",
-          "type": "string"
-        },
-        "lca_tool_version_type": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Version of tool and type used to conduct the assessment. If unknown, enter 'unknown'. Recommended.",
-          "title": "Lca Tool Version Type"
-        },
-        "assessment_life_cycle_stages": {
-          "anyOf": [
-            {
-              "items": {
-                "enum": [
-                  "A0",
-                  "A1-A3",
-                  "A4",
-                  "A5",
-                  "A5.1",
-                  "A5.2",
-                  "A5.3",
-                  "A5.4",
-                  "B1",
-                  "B1.1",
-                  "B1.2",
-                  "B2",
-                  "B3",
-                  "B4",
-                  "B5",
-                  "B6",
-                  "B7",
-                  "B8",
-                  "C1",
-                  "C2",
-                  "C3",
-                  "C4",
-                  "D",
-                  "D1",
-                  "D2"
-                ],
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "LCA stages included in embodied carbon modeling. Recommended.",
-          "title": "Assessment Life Cycle Stages"
-        },
-        "required_service_life": {
-          "anyOf": [
-            {
-              "exclusiveMinimum": 0,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Service life required by the client or through regulations. Recommended.",
-          "title": "Required Service Life"
-        },
-        "reference_study_period": {
-          "anyOf": [
-            {
-              "exclusiveMinimum": 0,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Reference study period used in assessment modeling, if use and end of life phases included. Recommended.",
-          "title": "Reference Study Period"
-        },
-        "material_quantity_source": {
-          "anyOf": [
-            {
-              "items": {
-                "enum": [
-                  "Extrapolation from Construction Type Land Use Area",
-                  "Manual Approximation",
-                  "BIM Model",
-                  "Design Estimates/ Manual Takeoff from Design Documentation",
-                  "Construction Estimate/Contractors Bill of Materials",
-                  "As-Built",
-                  "Other Data Source"
-                ],
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Main source of material quantities. Recommended.",
-          "title": "Material Quantity Source"
         },
         "report_name": {
           "anyOf": [
@@ -1373,7 +1238,7 @@
         "assessor_email": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/definitions/email"
             },
             {
               "type": "null"
@@ -1396,19 +1261,39 @@
           "description": "Company, organization or affiliation of person who conducted the LCA or carbon assessment.",
           "title": "Assessor Organization"
         },
+        "assessment_year": {
+          "description": "Year when LCA or carbon assessment was completed. Required.",
+          "maximum": 2200,
+          "minimum": 1800,
+          "title": "Assessment Year",
+          "type": "integer"
+        },
+        "assessment_date": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/iso_date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date of assessment in ISO 8601 format (yyyy-mm-dd). Recommended.",
+          "title": "Assessment Date"
+        },
         "project_phase_at_reporting": {
           "anyOf": [
             {
+              "type": "string",
               "enum": [
-                "Existing Condition",
-                "Concept/Planning",
-                "Schematic Design",
-                "Design Development",
-                "Construction Documentation",
-                "Construction (Administration)",
-                "As-Built"
-              ],
-              "type": "string"
+                "existing condition",
+                "concept/planning",
+                "schematic design",
+                "design development",
+                "construction documentation",
+                "construction (administration)",
+                "as-built"
+              ]
             },
             {
               "type": "null"
@@ -1418,7 +1303,45 @@
           "description": "The phase of the project when the LCA or carbon assessment was reported to database, commitment, or certification program.",
           "title": "Project Phase At Reporting"
         },
-        "material_quantity_source_detail": {
+        "project_phase_at_time_of_assessment": {
+          "title": "Project Phase At Time Of Assessment",
+          "description": "Phase of the project when the LCA or carbon assessment was completed. Required.",
+          "type": "string",
+          "enum": [
+            "existing condition",
+            "concept/planning",
+            "schematic design",
+            "design development",
+            "construction documentation",
+            "construction (administration)",
+            "as-built",
+            "in-use"
+          ]
+        },
+        "tool_lca": {
+          "title": "Tool LCA",
+          "description": "Tool used to conduct the assessment. Required.",
+          "type": "string",
+          "enum": [
+            "Athena IE",
+            "Beacon",
+            "BEAM",
+            "Build Carbon Neutral",
+            "CARE Tool",
+            "Carbon Conscience",
+            "cove.tool",
+            "EC3",
+            "EPIC",
+            "Embodied Carbon Order of Magnitude (ECOM)",
+            "eTOOL",
+            "OneClick LCA",
+            "Pathfinder",
+            "Simapro",
+            "tallyLCA",
+            "Other"
+          ]
+        },
+        "lca_tool_version_type": {
           "anyOf": [
             {
               "type": "string"
@@ -1428,17 +1351,129 @@
             }
           ],
           "default": null,
+          "description": "Version of tool and type used to conduct the assessment. If unknown, enter 'unknown'. Recommended.",
+          "title": "Lca Tool Version Type"
+        },
+        "assessment_life_cycle_stages": {
+          "title": "Assessment Life Cycle Stages",
+          "description": "LCA stages included in embodied carbon modeling. Recommended.",
+          "type": "object",
+          "properties": {
+            "A0": { "type": "boolean", "description": "Stage A0" },
+            "A1-A3": { "type": "boolean", "description": "Stages A1 to A3" },
+            "A4": { "type": "boolean", "description": "Stage A4" },
+            "A5": {
+              "type": "object",
+              "properties": {
+                "A5.1": { "type": "boolean", "description": "Stage A5.1" },
+                "A5.2": { "type": "boolean", "description": "Stage A5.2" },
+                "A5.3": { "type": "boolean", "description": "Stage A5.3" },
+                "A5.4": { "type": "boolean", "description": "Stage A5.4" }
+              },
+              "additionalProperties": false,
+              "description": "Substages of A5"
+            },
+            "B1": {
+              "type": "object",
+              "properties": {
+                "B1.1": { "type": "boolean", "description": "Stage B1.1" },
+                "B1.2": { "type": "boolean", "description": "Stage B1.2" }
+              },
+              "additionalProperties": false,
+              "description": "Substages of B1"
+            },
+            "B2": { "type": "boolean", "description": "Stage B2" },
+            "B3": { "type": "boolean", "description": "Stage B3" },
+            "B4": { "type": "boolean", "description": "Stage B4" },
+            "B5": { "type": "boolean", "description": "Stage B5" },
+            "B6": { "type": "boolean", "description": "Stage B6" },
+            "B7": { "type": "boolean", "description": "Stage B7" },
+            "B8": { "type": "boolean", "description": "Stage B8" },
+            "C1": { "type": "boolean", "description": "Stage C1" },
+            "C2": { "type": "boolean", "description": "Stage C2" },
+            "C3": { "type": "boolean", "description": "Stage C3" },
+            "C4": { "type": "boolean", "description": "Stage C4" },
+            "D": {
+              "type": "object",
+              "properties": {
+                "D1": { "type": "boolean", "description": "Stage D1" },
+                "D2": { "type": "boolean", "description": "Stage D2" }
+              },
+              "additionalProperties": false,
+              "description": "Substages of D"
+            }
+          },
+          "additionalProperties": false
+        },
+        "required_service_life": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Service life required by the client or through regulations. Recommended.",
+          "title": "Required Service Life"
+        },
+        "reference_study_period": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Reference study period used in assessment modeling, if use and end of life phases included. Recommended.",
+          "title": "Reference Study Period"
+        },
+        "material_quantity_source": {
+          "title": "Material Quantity Source",
+          "description": "Main source of material quantities. Recommended.",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Extrapolation from Construction Type Land Use Area",
+                "Manual Approximation",
+                "BIM Model",
+                "Design Estimates/ Manual Takeoff from Design Documentation",
+                "Construction Estimate/Contractors Bill of Materials",
+                "As-Built",
+                "Other Data Source"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material_quantity_source_detail": {
+          "title": "Material Quantity Source Detail",
           "description": "If more than one material quantity source selected, provide additional detail on which materials and systems apply to each material quantity source.",
-          "title": "Material Quantity Source Detail"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         }
       },
       "required": [
         "assessment_year",
         "project_phase_at_time_of_assessment",
         "tool_lca"
-      ],
-      "title": "response_LCAInformation",
-      "type": "object"
+      ]
     },
     "response_LCAResults": {
       "properties": {
@@ -3999,7 +4034,5 @@
     "inclusions",
     "lca_results",
     "reduction_strategies"
-  ],
-  "title": "nested_ECHO",
-  "type": "object"
+  ]
 }
