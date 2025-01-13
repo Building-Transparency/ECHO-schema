@@ -38,23 +38,63 @@
         },
         "unit": {
           "type": "string",
-          "enum": ["ft2", "m2", "in2", "cm2"]
+          "enum": ["ft2", "m2", "in2", "cm2", "yd2", "km2", "mi2"]
         }
       },
-      "description": "A number value for areas. Includes unit type information.",
-      "examples": [
-        {
-          "value": 1000,
-          "unit": "ft2"
-        },
-        {
-          "value": 100,
-          "unit": "m2"
-        }
-      ]
+      "description": "A number value for areas. Includes unit type information."
     },
-    "impact_results": {
-
+    "impact_set": {
+      "type": "object",
+      "properties": {
+        "gwp_total": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP"
+        },
+        "gwp_fossil": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP fossil"
+        },
+        "gwp_luluc": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP luluc"
+        },
+        "gwp_bio_total": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic"
+        },
+        "gwp_bio_emissions": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic emissions"
+        },
+        "gwp_bio_storage": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic storage"
+        },
+        "ap_total": {
+          "type": "number",
+          "description": "Total quantity (in kg SO2e) of AP (acidification potential of land and water)."
+        },
+        "ep_total": {
+          "type": "number",
+          "description": "Total quantity (in kg PO4e) of EP (eutrophication potential)."
+        },
+        "odp_total": {
+          "type": "number",
+          "description": "Total quantity (kg CFC-11e) of ODP (ozone depletion potential)."
+        },
+        "pocp_total": {
+          "type": "number",
+          "description": "Total quantity (kg C2H4e) of POCP (photochemical ozone creation potential, aka photochemical smog potential)."
+        },
+        "adp_total": {
+          "type": "number",
+          "description": "Total quantity (kg Sbe) of ADP (abiotic depletion potential)."
+        },
+        "ced_total": {
+          "type": "number",
+          "description": "Total quantity (MJ) of CED (cumulative energy demand)."
+        }
+      }
     }
   },
   "$defs": {
@@ -4034,6 +4074,203 @@
       },
       "title": "response_Verification",
       "type": "object"
+    }
+  },
+    "response_LCAResults": {
+      "properties": {
+        "gwp_total": {
+          "title": "Project GWP Total",
+          "description": "Total project GWP in kilograms of CO2 equivalent.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "gwp_intensity_per_building_area": {
+          "title": "Project GWP Intensity Per Building Area",
+          "description": "Total project GWP intensity per building area in kgCO2e/m2.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],          "default": null
+        },
+        "gwp_total_site_area": {
+          "title": "Project GWP Total for Site Elements",
+          "description": "Total project GWP in kgCO2e for any site elements.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],          "default": null
+        },
+        "A1A2A3": {
+          "description": "Life Cycle Stage A1-A3 Product Stage",
+          "$ref": "#/definitions/impact_set",
+          "required": [
+            "gwp_total"
+          ]
+        },
+        "A4": {
+          "description": "Life Cycle Stage A4 Transportation",
+          "$ref": "#/definitions/impact_set"
+        },
+        "A5_total": {
+          "description": "Life Cycle Stage A5 Construction Installation Process. If more granular breakout of A5 emissions is provided, the below referenced values are the sum of each sub-stage (A5.1-A5.4)",
+          "$ref": "#/definitions/impact_set"
+        },
+        "A5_1": {
+          "description": "Life Cycle Stage A5.1 Pre-Construction Demolition includes Demolition/ deconstruction of existing buildings and structures, and/ or parts thereof, including transport from site and waste processing of removed materials.",
+          "$ref": "#/definitions/impact_set"
+        },
+        "A5_2": {
+          "description": "Life Cycle Stage A5.2 Construction Activities includes Site preparation; temporary works; ground works; connection to utilities; transport and onsite storage of construction products, materials and equipment; onsite production/assembly of products; works for the installation and ancillary materials (e.g. formworks and their disposal); heating/ cooling/ventilation of site facilities; energy and water use for construction processes and landscaping",
+          "$ref": "#/definitions/impact_set"
+        },
+        "A5_3": {
+          "description": "Life Cycle Stage A5.3 Waste and Waste Management includes Production, transportation, storage and end-of-life treatment and disposal of any material/waste onsite; transport, waste management and disposal of packing materials.",
+          "$ref": "#/definitions/impact_set"
+        },
+        "A5_4": {
+          "description": "Life Cycle Stage A5.4 Worker Transport includes emissions of site workers traveling to and from site.",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B1_total": {
+          "description": "Life Cycle Stage B1 Use Stage - Installed product in use. If more granular breakout provided for stages B1.1 and B1.2, this is the sum of those.",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B1_1": {
+          "description": "Life Cycle Stage B1.1 - Material Emissions and Uptake",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B1_2": {
+          "description": "Life Cycle Stage B1.1 - Fugitive Emissions",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B2": {
+          "description": "Life Cycle Stage B2 - Maintenance Emissions",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B3": {
+          "description": "Life Cycle Stage B3 - Repair Emissions",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B4": {
+          "description": "Life Cycle Stage B4 - Replacement Emissions",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B5": {
+          "description": "Life Cycle Stage B5 - Refurbishment Emissions",
+          "$ref": "#/definitions/impact_set"
+        },
+        "B6": {
+          "properties": {
+            "impacts": {
+              "description": "Life Cycle Stage B6 - Operational Energy",
+              "$ref": "#/definitions/impact_set"
+            },
+            "energy_use_predicted_net": {
+              "description": "What is the overall predicted net (less on site renewable energy generation) energy use in kBTU?",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "energy_use_predicted_gross": {
+              "description": "What is the overall predicted gross Energy use in kBTU?",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          }
+        },
+        "B7": {
+          "description": "Life Cycle Stage B7 - Operational Water Use",
+          "properties": {
+            "impacts": {
+              "description": "Life Cycle Stage B6 - Operational Energy",
+              "$ref": "#/definitions/impact_set"
+            },
+            "water_source_provider": {
+              "description": "Name of water source provider or wastewater handling utility",
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          }
+        },
+        "B8": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage B8 - Other Operational Processes"
+        },
+        "C1": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage C1 - Deconstruction"
+        },
+        "C2": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage C2 - EOL Transport"
+        },
+        "C3": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage C3 - Waste Processing for Recovery"
+        },
+        "C4": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage C3 - EOL Disposal"
+        },
+        "D_total": {
+          "$ref": "#/definitions/echo/properties/elements/properties/substructure/anyOf/0/properties/A1A3",
+          "default": null,
+          "description": "Life Cycle Stage D - Benefits and loads beyond the system boundary (Reuse, Recovery, Recycling potential). If more granular breakout of D stage results provided (D1 and D2), this is the sum of those."
+        },
+        "D1": {
+          "description": "Life Cycle Stage D1 - All environmental loads and benedits from future substitution of resources due to reused products, recycled materials, secondary fuelds, and recovered energy leaving a project for use in a subsequent product system as material.",
+          "$ref": "#/definitions/impact_set",
+          "default": null
+        },
+        "D2": {
+          "description": "Life Cycle Stage D2 - All environmental loads and benefits for recovered and exported energy used to meet the energy demand outside of the project.",
+          "$ref": "#/definitions/impact_set",
+          "default": null
+        }
+      },
+      "required": [
+        "gwp_total"
+      ]
     }
   },
   "properties": {
