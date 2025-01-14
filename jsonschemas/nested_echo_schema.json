@@ -1896,7 +1896,6 @@
         "project_climate_zone": {
           "anyOf": [
             {
-              "items": {
                 "enum": [
                   "0",
                   "0A",
@@ -1930,8 +1929,6 @@
                   "8B"
                 ],
                 "type": "string"
-              },
-              "type": "array"
             },
             {
               "type": "null"
@@ -1949,9 +1946,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -1965,9 +1959,6 @@
               "maximum": 180.0,
               "minimum": -180.0,
               "type": "number"
-            },
-            {
-              "type": "string"
             },
             {
               "type": "null"
@@ -2233,14 +2224,23 @@
           "title": "Gfa Measurement Method",
           "type": "string"
         },
+        "gfa_measurement_method_other": {
+          "description": "If 'Other' selected for GFA measurement method, provide additional detail.",
+          "title": "Gfa Measurement Method Other",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "gross_floor_area": {
           "anyOf": [
             {
               "minimum": 0.0,
               "type": "number"
-            },
-            {
-              "type": "string"
             },
             {
               "type": "null"
@@ -2257,9 +2257,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -2272,9 +2269,6 @@
             {
               "minimum": 0.0,
               "type": "number"
-            },
-            {
-              "type": "string"
             },
             {
               "type": "null"
@@ -2291,9 +2285,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -2306,9 +2297,6 @@
             {
               "minimum": 0.0,
               "type": "number"
-            },
-            {
-              "type": "string"
             },
             {
               "type": "null"
@@ -2325,9 +2313,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -2342,9 +2327,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -2355,7 +2337,8 @@
         "stories_above_grade": {
           "anyOf": [
             {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 0
             },
             {
               "type": "null"
@@ -2368,7 +2351,8 @@
         "stories_below_grade": {
           "anyOf": [
             {
-              "type": "integer"
+              "type": "integer",
+              "minimum": 0
             },
             {
               "type": "null"
@@ -2398,7 +2382,8 @@
         "surface_parking_area": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "number",
+              "minimum": 0.0
             },
             {
               "type": "null"
@@ -2411,7 +2396,8 @@
         "detached_parking_structure_area": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "number",
+              "minimum": 0.0
             },
             {
               "type": "null"
@@ -2424,7 +2410,8 @@
         "interstitial_floors": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "number",
+              "minimum": 0
             },
             {
               "type": "null"
@@ -2437,7 +2424,8 @@
         "mean_roof_height": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "number",
+              "minimum": 0.0
             },
             {
               "type": "null"
@@ -2455,9 +2443,6 @@
               "type": "number"
             },
             {
-              "type": "string"
-            },
-            {
               "type": "null"
             }
           ],
@@ -2468,7 +2453,8 @@
         "thermal_envelope_area": {
           "anyOf": [
             {
-              "type": "number"
+              "type": "number",
+              "minimum": 0.0
             },
             {
               "type": "null"
@@ -2477,6 +2463,22 @@
           "default": null,
           "description": "The thermal envelope of a building includes all the exterior surfaces that enclose the conditioned space and separate it from unconditioned spaces or the outdoors. This includes walls, floors, roofs, windows, and doors. The thermal envelope area is crucial for determining the energy efficiency of a building, as it impacts heat loss and gain.",
           "title": "Thermal Envelope Area"
+        }
+      },
+      "dependentSchemas": {
+        "gfa_measurement_method": {
+          "if": {
+            "properties": {
+              "gfa_measurement_method": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "gfa_measurement_method_other"
+            ]
+          }
         }
       },
       "required": [
@@ -3016,7 +3018,7 @@
           "enum": [
             "Building",
             "Infrastructure",
-            "Landscapes"
+            "Sitework"
           ],
           "title": "Asset Type",
           "type": "string"
@@ -4153,9 +4155,44 @@
       "$ref": "#/$defs/response_ReductionStrategies"
     }
   },
+  "allOf": [
+    {
       "if": {
         "properties": {
-          "response_ProjectUseConstruction": {
+          "project_use_construction_type": {
+            "properties": {
+              "asset_type": {
+                "const": "Building"
+              }
+            },
+            "required": [
+              "asset_type"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "project_use_construction_type": {
+            "properties": {
+              "infrastructure_construction_type": {
+                "const": null
+              },
+              "infrastructure_sector_type": {
+                "const": null
+              },
+              "infrastructure_use_type": {
+                "const": null
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "project_use_construction_type": {
             "properties": {
               "asset_type": {
                 "const": "Infrastructure"
@@ -4169,15 +4206,95 @@
       },
       "then": {
         "properties": {
-          "response_ProjectTeamContact": {
+          "building_occupancy": {
+            "const": null
+          },
+          "project_use_construction_type": {
             "properties": {
+              "building_construction_type": {
+                "const": null
+              },
+              "building_sector_type": {
+                "const": null
+              },
+              "building_use_type": {
+                "const": null
+              }
+            }
+            },
+          "project_team":{
+            "properties":{
               "interior_designer": {
-                "type": "null"
+                "const": null
               }
             }
           }
         }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "project_use_construction_type": {
+            "properties": {
+              "asset_type": {
+                "const": "Sitework"
+              }
+            },
+            "required": [
+              "asset_type"
+            ]
+          }
+        }
       },
+      "then": {
+        "properties": {
+          "building_occupancy": {
+            "const": null
+          },
+          "project_use_construction_type": {
+            "properties": {
+              "building_construction_type": {
+                "const": null
+              },
+              "building_sector_type": {
+                "const": null
+              },
+              "building_use_type": {
+                "const": null
+              },
+              "energy_code":{ 
+                "const": null 
+              },
+              "IBC_Construction_Type":{ 
+                "const": null 
+              }
+            }
+            },
+          "project_size": {
+            "properties": {
+              "gross_floor_area": {
+                "const": null
+              },
+              "gfa_measurement_method": {
+                "const": null
+              },
+              "gfa_measurement_method_other": {
+                "const": null
+              }
+            }
+            },
+          "project_team":{
+            "properties":{
+              "interior_designer": {
+                "const": null
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "required": [
     "project_description",
     "project_team",
