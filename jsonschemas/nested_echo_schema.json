@@ -1,270 +1,121 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://buildingtransparency.org/echo/v1.0/schema.json",
+  "title": "ECHO Schema",
+  "description": "ECHO schema in nested format built by Building Transparency team.",
+  "type": "object",
   "$defs": {
-    "response_B6": {
-      "properties": {
-        "energy_use_predicted_net": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Predicted net energy use in kBTU",
-          "title": "Energy Use Predicted Net"
-        },
-        "energy_use_predicted_gross": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Predicted gross energy use in kBTU",
-          "title": "Energy Use Predicted Gross"
-        },
-        "energy_end_use": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Associated end use",
-          "title": "Energy End Use"
-        },
-        "fuel_type": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Associated fuel type",
-          "title": "Fuel Type"
-        },
-        "GWP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP in kg CO2e",
-          "title": "Gwp Total"
-        },
-        "GWP_fossil": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP fossil in kg CO2e",
-          "title": "Gwp Fossil"
-        },
-        "GWP_luluc": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP luluc in kg CO2e",
-          "title": "Gwp Luluc"
-        },
-        "GWP_bio_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic in kg CO2e",
-          "title": "Gwp Bio Total"
-        },
-        "GWP_bio_emissions": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic emissions in kg CO2e",
-          "title": "Gwp Bio Emissions"
-        },
-        "GWP_bio_storage": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic storage in kg CO2e",
-          "title": "Gwp Bio Storage"
-        }
-      },
-      "title": "response_B6",
-      "type": "object"
+    "iso_date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "A date in ISO 8601 format (YYYY-MM-DD).",
+      "examples": [
+        "2023-01-01",
+        "1999-12-31"
+      ]
     },
-    "response_B7": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "description": "A valid email address following the standard email format.",
+      "examples": [
+        "user@example.com",
+        "admin@subdomain.example.org"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^(https?://[\\w.-]+(?:\\.[\\w.-]+)+[/#?]?.*)$",
+      "description": "A valid URL following the standard URI format. Must include http:// or https://.",
+      "examples": [
+        "https://example.com",
+        "http://subdomain.example.org/path?query=param#fragment"
+      ]
+    },
+    "number_area": {
+      "type": "number",
       "properties": {
-        "water_source_provider": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Name of water source provider",
-          "title": "Water Source Provider"
+        "value": {
+          "type": "number",
+          "minimum": 0
         },
-        "water_type": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Type of water/wastewater",
-          "title": "Water Type"
-        },
-        "water_consumption": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Water consumption in m3/year",
-          "title": "Water Consumption"
-        },
-        "GWP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP in kg CO2e",
-          "title": "Gwp Total"
-        },
-        "GWP_fossil": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP fossil in kg CO2e",
-          "title": "Gwp Fossil"
-        },
-        "GWP_luluc": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP luluc in kg CO2e",
-          "title": "Gwp Luluc"
-        },
-        "GWP_bio_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic in kg CO2e",
-          "title": "Gwp Bio Total"
-        },
-        "GWP_bio_emissions": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic emissions in kg CO2e",
-          "title": "Gwp Bio Emissions"
-        },
-        "GWP_bio_storage": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total GWP biogenic storage in kg CO2e",
-          "title": "Gwp Bio Storage"
+        "unit": {
+          "type": "string",
+          "enum": [
+            "ft2",
+            "m2",
+            "in2",
+            "cm2",
+            "yd2",
+            "km2",
+            "mi2"
+          ]
         }
       },
-      "title": "response_B7",
-      "type": "object"
+      "description": "A number value for areas. Includes unit type information."
+    },
+    "impact_set": {
+      "type": "object",
+      "properties": {
+        "gwp_total": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP"
+        },
+        "gwp_fossil": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP fossil"
+        },
+        "gwp_luluc": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP luluc"
+        },
+        "gwp_bio_total": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic"
+        },
+        "gwp_bio_emissions": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic emissions"
+        },
+        "gwp_bio_storage": {
+          "type": "number",
+          "description": "Total quantity (in kg CO2e) of GWP biogenic storage"
+        },
+        "ap_total": {
+          "type": "number",
+          "description": "Total quantity (in kg SO2e) of AP (acidification potential of land and water)."
+        },
+        "ep_total": {
+          "type": "number",
+          "description": "Total quantity (in kg PO4e) of EP (eutrophication potential)."
+        },
+        "odp_total": {
+          "type": "number",
+          "description": "Total quantity (kg CFC-11e) of ODP (ozone depletion potential)."
+        },
+        "pocp_total": {
+          "type": "number",
+          "description": "Total quantity (kg C2H4e) of POCP (photochemical ozone creation potential, aka photochemical smog potential)."
+        },
+        "adp_total": {
+          "type": "number",
+          "description": "Total quantity (kg Sbe) of ADP (abiotic depletion potential)."
+        },
+        "ced_total": {
+          "type": "number",
+          "description": "Total quantity (MJ) of CED (cumulative energy demand)."
+        }
+      }
     },
     "response_BuildingOccupancy": {
       "properties": {
         "occupant_load": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0,
+              "minimum": 0,
               "type": "integer"
             },
             {
@@ -278,7 +129,7 @@
         "full_time_equivalent": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -295,7 +146,7 @@
         "residential_units": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0,
+              "minimum": 0,
               "type": "integer"
             },
             {
@@ -309,8 +160,7 @@
         "anticipated_start_building_occupancy": {
           "anyOf": [
             {
-              "format": "date",
-              "type": "string"
+              "$ref": "#/$defs/iso_date"
             },
             {
               "type": "null"
@@ -481,7 +331,7 @@
         "electricity_carbon_factor": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -513,163 +363,6 @@
         "tool_energy_model"
       ],
       "title": "response_EnergyModelOperationalEnergy",
-      "type": "object"
-    },
-    "response_GWP": {
-      "properties": {
-        "GWP_total": {
-          "description": "Total quantity (in kg CO2e) of GWP",
-          "title": "Gwp Total",
-          "type": "number"
-        },
-        "GWP_fossil": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg CO2e) of GWP fossil",
-          "title": "Gwp Fossil"
-        },
-        "GWP_luluc": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg CO2e) of GWP luluc",
-          "title": "Gwp Luluc"
-        },
-        "GWP_bio_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg CO2e) of GWP biogenic",
-          "title": "Gwp Bio Total"
-        },
-        "GWP_bio_emissions": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg CO2e) of GWP biogenic emissions",
-          "title": "Gwp Bio Emissions"
-        },
-        "GWP_bio_storage": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg CO2e) of GWP biogenic storage",
-          "title": "Gwp Bio Storage"
-        },
-        "AP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg SO2e) of AP (acidification potential of land and water).",
-          "title": "Ap Total"
-        },
-        "EP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (in kg PO4e) of EP (eutrophication potential).",
-          "title": "Ep Total"
-        },
-        "ODP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (kg CFC-11e) of ODP (ozone depletion potential).",
-          "title": "Odp Total"
-        },
-        "POCP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (kg C2H4e) of POCP (photochemical ozone creation potential, aka photochemical smog potential).",
-          "title": "Pocp Total"
-        },
-        "ADP_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (kg Sbe) of ADP (abiotic depletion potential).",
-          "title": "Adp Total"
-        },
-        "CED_total": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Total quantity (MJ) of CED (cumulative energy demand).",
-          "title": "Ced Total"
-        }
-      },
-      "required": [
-        "GWP_total"
-      ],
-      "title": "response_GWP",
       "type": "object"
     },
     "response_Inclusions": {
@@ -1149,11 +842,13 @@
       "type": "object"
     },
     "response_LCAInformation": {
+      "title": "response_LCAInformation",
+      "type": "object",
       "properties": {
         "tool_report_upload": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/url"
             },
             {
               "type": "null"
@@ -1162,174 +857,6 @@
           "default": null,
           "description": "Upload report from LCA tool. Recommended.",
           "title": "Tool Report Upload"
-        },
-        "assessment_year": {
-          "description": "Year when LCA or carbon assessment was completed. Required.",
-          "maximum": 2200,
-          "minimum": 1800,
-          "title": "Assessment Year",
-          "type": "integer"
-        },
-        "assessment_date": {
-          "anyOf": [
-            {
-              "format": "date",
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Date of assessment. Year must be provided at a minimum. Month and day recommended.",
-          "title": "Assessment Date"
-        },
-        "project_phase_at_time_of_assessment": {
-          "description": "Phase of the project when the LCA or carbon assessment was completed. Required.",
-          "enum": [
-            "existing condition",
-            "concept/planning",
-            "schematic design",
-            "design development",
-            "construction documentation",
-            "construction (administration)",
-            "as-built",
-            "in-use"
-          ],
-          "title": "Project Phase At Time Of Assessment",
-          "type": "string"
-        },
-        "tool_lca": {
-          "description": "Tool used to conduct the assessment. Required.",
-          "enum": [
-            "Athena IE",
-            "Beacon",
-            "BEAM",
-            "Build Carbon Neutral",
-            "CARE Tool",
-            "Carbon Conscience",
-            "cove.tool",
-            "EC3",
-            "EPIC",
-            "Embodied Carbon Order of Magnitude (ECOM)",
-            "eTOOL",
-            "OneClick LCA",
-            "Pathfinder",
-            "Simapro",
-            "tallyLCA",
-            "Other"
-          ],
-          "title": "Tool Lca",
-          "type": "string"
-        },
-        "lca_tool_version_type": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Version of tool and type used to conduct the assessment. If unknown, enter 'unknown'. Recommended.",
-          "title": "Lca Tool Version Type"
-        },
-        "assessment_life_cycle_stages": {
-          "anyOf": [
-            {
-              "items": {
-                "enum": [
-                  "A0",
-                  "A1-A3",
-                  "A4",
-                  "A5",
-                  "A5.1",
-                  "A5.2",
-                  "A5.3",
-                  "A5.4",
-                  "B1",
-                  "B1.1",
-                  "B1.2",
-                  "B2",
-                  "B3",
-                  "B4",
-                  "B5",
-                  "B6",
-                  "B7",
-                  "B8",
-                  "C1",
-                  "C2",
-                  "C3",
-                  "C4",
-                  "D",
-                  "D1",
-                  "D2"
-                ],
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "LCA stages included in embodied carbon modeling. Recommended.",
-          "title": "Assessment Life Cycle Stages"
-        },
-        "required_service_life": {
-          "anyOf": [
-            {
-              "exclusiveMinimum": 0,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Service life required by the client or through regulations. Recommended.",
-          "title": "Required Service Life"
-        },
-        "reference_study_period": {
-          "anyOf": [
-            {
-              "exclusiveMinimum": 0,
-              "type": "integer"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Reference study period used in assessment modeling, if use and end of life phases included. Recommended.",
-          "title": "Reference Study Period"
-        },
-        "material_quantity_source": {
-          "anyOf": [
-            {
-              "items": {
-                "enum": [
-                  "Extrapolation from Construction Type Land Use Area",
-                  "Manual Approximation",
-                  "BIM Model",
-                  "Design Estimates/ Manual Takeoff from Design Documentation",
-                  "Construction Estimate/Contractors Bill of Materials",
-                  "As-Built",
-                  "Other Data Source"
-                ],
-                "type": "string"
-              },
-              "type": "array"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Main source of material quantities. Recommended.",
-          "title": "Material Quantity Source"
         },
         "report_name": {
           "anyOf": [
@@ -1373,7 +900,7 @@
         "assessor_email": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/email"
             },
             {
               "type": "null"
@@ -1396,19 +923,39 @@
           "description": "Company, organization or affiliation of person who conducted the LCA or carbon assessment.",
           "title": "Assessor Organization"
         },
+        "assessment_year": {
+          "description": "Year when LCA or carbon assessment was completed. Required.",
+          "maximum": 2200,
+          "minimum": 1800,
+          "title": "Assessment Year",
+          "type": "integer"
+        },
+        "assessment_date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/iso_date"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date of assessment in ISO 8601 format (yyyy-mm-dd). Recommended.",
+          "title": "Assessment Date"
+        },
         "project_phase_at_reporting": {
           "anyOf": [
             {
+              "type": "string",
               "enum": [
-                "Existing Condition",
-                "Concept/Planning",
-                "Schematic Design",
-                "Design Development",
-                "Construction Documentation",
-                "Construction (Administration)",
-                "As-Built"
-              ],
-              "type": "string"
+                "existing condition",
+                "concept/planning",
+                "schematic design",
+                "design development",
+                "construction documentation",
+                "construction (administration)",
+                "as-built"
+              ]
             },
             {
               "type": "null"
@@ -1418,7 +965,58 @@
           "description": "The phase of the project when the LCA or carbon assessment was reported to database, commitment, or certification program.",
           "title": "Project Phase At Reporting"
         },
-        "material_quantity_source_detail": {
+        "project_phase_at_time_of_assessment": {
+          "title": "Project Phase At Time Of Assessment",
+          "description": "Phase of the project when the LCA or carbon assessment was completed. Required.",
+          "type": "string",
+          "enum": [
+            "existing condition",
+            "concept/planning",
+            "schematic design",
+            "design development",
+            "construction documentation",
+            "construction (administration)",
+            "as-built",
+            "in-use"
+          ]
+        },
+        "tool_lca": {
+          "title": "Tool LCA",
+          "description": "Tool used to conduct the assessment. Required.",
+          "type": "string",
+          "enum": [
+            "Athena IE",
+            "Beacon",
+            "BEAM",
+            "Build Carbon Neutral",
+            "CARE Tool",
+            "Carbon Conscience",
+            "cove.tool",
+            "EC3",
+            "EPIC",
+            "Embodied Carbon Order of Magnitude (ECOM)",
+            "eTOOL",
+            "OneClick LCA",
+            "Pathfinder",
+            "Simapro",
+            "tallyLCA",
+            "Other"
+          ]
+        },
+        "tool_lca_other": {
+          "title": "Tool LCA Other",
+          "description": "If 'Other' selected for tool used to conduct the assessment, provide the name of the tool.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "lca_tool_version_type": {
           "anyOf": [
             {
               "type": "string"
@@ -1428,451 +1026,233 @@
             }
           ],
           "default": null,
+          "description": "Version of tool and type used to conduct the assessment. If unknown, enter 'unknown'. Recommended.",
+          "title": "Lca Tool Version Type"
+        },
+        "assessment_life_cycle_stages": {
+          "title": "Assessment Life Cycle Stages",
+          "description": "LCA stages included in embodied carbon modeling. Recommended.",
+          "type": "object",
+          "properties": {
+            "A0": {
+              "type": "boolean",
+              "description": "Stage A0"
+            },
+            "A1-A3": {
+              "type": "boolean",
+              "description": "Stages A1 to A3 in aggregate"
+            },
+            "A4": {
+              "type": "boolean",
+              "description": "Stage A4"
+            },
+            "A5": {
+              "type": "boolean",
+              "description": "Stage A5 in aggregate"
+            },
+            "A5.1": {
+              "type": "boolean",
+              "description": "Stage A5.1"
+            },
+            "A5.2": {
+              "type": "boolean",
+              "description": "Stage A5.2"
+            },
+            "A5.3": {
+              "type": "boolean",
+              "description": "Stage A5.3"
+            },
+            "A5.4": {
+              "type": "boolean",
+              "description": "Stage A5.4"
+            },
+            "B1": {
+              "type": "boolean",
+              "description": "Stage B1 in aggregate"
+            },
+            "B1.1": {
+              "type": "boolean",
+              "description": "Stage B1.1"
+            },
+            "B1.2": {
+              "type": "boolean",
+              "description": "Stage B1.2"
+            },
+            "B2": {
+              "type": "boolean",
+              "description": "Stage B2"
+            },
+            "B3": {
+              "type": "boolean",
+              "description": "Stage B3"
+            },
+            "B4": {
+              "type": "boolean",
+              "description": "Stage B4"
+            },
+            "B5": {
+              "type": "boolean",
+              "description": "Stage B5"
+            },
+            "B6": {
+              "type": "boolean",
+              "description": "Stage B6"
+            },
+            "B7": {
+              "type": "boolean",
+              "description": "Stage B7"
+            },
+            "B8": {
+              "type": "boolean",
+              "description": "Stage B8"
+            },
+            "C": {
+              "type": "boolean",
+              "description": "Stage C in aggregate"
+            },
+            "C1": {
+              "type": "boolean",
+              "description": "Stage C1"
+            },
+            "C2": {
+              "type": "boolean",
+              "description": "Stage C2"
+            },
+            "C3": {
+              "type": "boolean",
+              "description": "Stage C3"
+            },
+            "C4": {
+              "type": "boolean",
+              "description": "Stage C4"
+            },
+            "D": {
+              "type": "boolean",
+              "description": "Stage D in aggregate"
+            },
+            "D1": {
+              "type": "boolean",
+              "description": "Stage D1"
+            },
+            "D2": {
+              "type": "boolean",
+              "description": "Stage D2"
+            }
+          },
+          "additionalProperties": false
+        },
+        "required_service_life": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Service life required by the client or through regulations. Recommended.",
+          "title": "Required Service Life"
+        },
+        "reference_study_period": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Reference study period used in assessment modeling, if use and end of life phases included. Recommended.",
+          "title": "Reference Study Period"
+        },
+        "material_quantity_source": {
+          "title": "Material Quantity Source",
+          "description": "Main source of material quantities. Recommended.",
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Extrapolation from Construction Type Land Use Area",
+                "Manual Approximation",
+                "BIM Model",
+                "Design Estimates/ Manual Takeoff from Design Documentation",
+                "Construction Estimate/Contractors Bill of Materials",
+                "As-Built",
+                "Other"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material_quantity_source_other": {
+          "title": "Material Quantity Source Other",
+          "description": "If 'Other' selected for material quantity source, provide additional detail.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "material_quantity_source_detail": {
+          "title": "Material Quantity Source Detail",
           "description": "If more than one material quantity source selected, provide additional detail on which materials and systems apply to each material quantity source.",
-          "title": "Material Quantity Source Detail"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "dependentSchemas": {
+        "tool_lca": {
+          "if": {
+            "properties": {
+              "tool_lca": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tool_lca_other"
+            ]
+          }
+        },
+        "material_quantity_source": {
+          "if": {
+            "properties": {
+              "material_quantity_source": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "material_quantity_source_other"
+            ]
+          }
         }
       },
       "required": [
         "assessment_year",
         "project_phase_at_time_of_assessment",
         "tool_lca"
-      ],
-      "title": "response_LCAInformation",
-      "type": "object"
-    },
-    "response_LCAResults": {
-      "properties": {
-        "GWP_total": {
-          "description": "Total project GWP in kilograms of CO2 equivalent.",
-          "title": "Gwp Total",
-          "type": "number"
-        },
-        "GWP_intensity_per_building_area": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "In kg CO2e/m2.",
-          "title": "Gwp Intensity Per Building Area"
-        },
-        "substructure": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "shell_superstructure": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "shell_exterior_enclosure": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "interior_construction": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "interior_finishes": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "services_mep": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "sitework": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "equipment": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        },
-        "furnishings": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_LCAStages"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null
-        }
-      },
-      "required": [
-        "GWP_total"
-      ],
-      "title": "response_LCAResults",
-      "type": "object"
-    },
-    "response_LCAStages": {
-      "properties": {
-        "A1_A3": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            }
-          ],
-          "description": "Life Cycle Stage A1-A3 Product Stage"
-        },
-        "A4": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A4 Transportation"
-        },
-        "A5_total": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A5 Construction Installation Process"
-        },
-        "A5p1": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A5.1 Pre-Construction Demolition includes Demolition/ deconstruction of existing buildings and structures, and/ or parts thereof, including transport from site and waste processing of removed materials."
-        },
-        "A5p2": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A5.2 Construction Activities includes Site preparation; temporary works; ground works; connection to utilities; transport and onsite storage of construction products, materials and equipment; onsite production/assembly of products; works for the installation and ancillary materials (e.g. formworks and their disposal); heating/ cooling/ventilation of site facilities; energy and water use for construction processes and landscaping"
-        },
-        "A5p3": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A5.3 Waste and Waste Management includes Production, transportation, storage and end-of-life treatment and disposal of any material/waste onsite; transport, waste management and disposal of packing materials."
-        },
-        "A5p4": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage A5.4 Worker Transport includes emissions of site workers traveling to and from site."
-        },
-        "B1_total": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B1 Use Stage"
-        },
-        "B1p1": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B1.1 Material Emissions and Uptake"
-        },
-        "B1p2": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B1.2 Fugitive Emissions"
-        },
-        "B2": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B2 Maintenance Emissions"
-        },
-        "B3": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B3 Repair Emissions"
-        },
-        "B4": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B4 Replacement Emissions"
-        },
-        "B5": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B5 Refurbishment Emissions"
-        },
-        "B6": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/response_B6"
-            }
-          ],
-          "default": {
-            "energy_use_predicted_net": null,
-            "energy_use_predicted_gross": null,
-            "energy_end_use": null,
-            "fuel_type": null,
-            "GWP_total": null,
-            "GWP_fossil": null,
-            "GWP_luluc": null,
-            "GWP_bio_total": null,
-            "GWP_bio_emissions": null,
-            "GWP_bio_storage": null
-          },
-          "description": "Life Cycle Stage B6 Operational Energy"
-        },
-        "B7": {
-          "allOf": [
-            {
-              "$ref": "#/$defs/response_B7"
-            }
-          ],
-          "default": {
-            "water_source_provider": null,
-            "water_type": null,
-            "water_consumption": null,
-            "GWP_total": null,
-            "GWP_fossil": null,
-            "GWP_luluc": null,
-            "GWP_bio_total": null,
-            "GWP_bio_emissions": null,
-            "GWP_bio_storage": null
-          },
-          "description": "Life Cycle Stage B7 Operational Water Use"
-        },
-        "B8": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage B8 Other Operational Processes"
-        },
-        "C1": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage C1 Deconstruction"
-        },
-        "C2": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage C2 End-of-Life Transport"
-        },
-        "C3": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage C3 Waste Processing for Recovery"
-        },
-        "C4": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage C4 End-of-Life Disposal"
-        },
-        "D_total": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage D Benefits and loads beyond the system boundary (Reuse, Recovery, Recycling potential)."
-        },
-        "D1": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage D1 All environmental loads and benedits from future substitution of resources due to reused products, recycled materials, secondary fuelds, and recovered energy leaving a project for use in a subsequent product system as material."
-        },
-        "D2": {
-          "anyOf": [
-            {
-              "$ref": "#/$defs/response_GWP"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Life Cycle Stage D2 All environmental loads and benefits for recovered and exported energy used to meet the energy demand outside of the project. "
-        }
-      },
-      "required": [
-        "A1_A3"
-      ],
-      "title": "response_LCAStages",
-      "type": "object"
+      ]
     },
     "response_ProjectCost": {
       "properties": {
@@ -2148,19 +1528,40 @@
         },
         "date_of_creation": {
           "description": "Date of data entry creation (yyyy-mm-dd)",
-          "format": "date",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/iso_date"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "title": "Date Of Creation",
           "type": "string"
         },
         "date_of_update": {
           "description": "Date of last data entry or edit (yyyy-mm-dd)",
-          "format": "date",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/iso_date"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "title": "Date Of Update",
           "type": "string"
         },
         "date_of_submission": {
           "description": "Date of data entry submission (yyyy-mm-dd)",
-          "format": "date",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/iso_date"
+            },
+            {
+              "type": "null"
+            }
+          ],
           "title": "Date Of Submission",
           "type": "string"
         },
@@ -2231,8 +1632,257 @@
         },
         "project_country": {
           "description": "Project country (ISO 3166 Alpha-3)",
-          "maxLength": 3,
-          "minLength": 3,
+          "enum": [
+            "AFG",
+            "ALA",
+            "ALB",
+            "DZA",
+            "ASM",
+            "AND",
+            "AGO",
+            "AIA",
+            "ATA",
+            "ATG",
+            "ARG",
+            "ARM",
+            "ABW",
+            "AUS",
+            "AUT",
+            "AZE",
+            "BHS",
+            "BHR",
+            "BGD",
+            "BRB",
+            "BLR",
+            "BEL",
+            "BLZ",
+            "BEN",
+            "BMU",
+            "BTN",
+            "BOL",
+            "BES",
+            "BIH",
+            "BWA",
+            "BVT",
+            "BRA",
+            "IOT",
+            "BRN",
+            "BGR",
+            "BFA",
+            "BDI",
+            "KHM",
+            "CMR",
+            "CAN",
+            "CPV",
+            "CYM",
+            "CAF",
+            "TCD",
+            "CHL",
+            "CHN",
+            "CXR",
+            "CCK",
+            "COL",
+            "COM",
+            "COG",
+            "COD",
+            "COK",
+            "CRI",
+            "CIV",
+            "HRV",
+            "CUB",
+            "CUW",
+            "CYP",
+            "CZE",
+            "DNK",
+            "DJI",
+            "DMA",
+            "DOM",
+            "ECU",
+            "EGY",
+            "SLV",
+            "GNQ",
+            "ERI",
+            "EST",
+            "ETH",
+            "FLK",
+            "FRO",
+            "FJI",
+            "FIN",
+            "FRA",
+            "GUF",
+            "PYF",
+            "ATF",
+            "GAB",
+            "GMB",
+            "GEO",
+            "DEU",
+            "GHA",
+            "GIB",
+            "GRC",
+            "GRL",
+            "GRD",
+            "GLP",
+            "GUM",
+            "GTM",
+            "GGY",
+            "GIN",
+            "GNB",
+            "GUY",
+            "HTI",
+            "HMD",
+            "VAT",
+            "HND",
+            "HKG",
+            "HUN",
+            "ISL",
+            "IND",
+            "IDN",
+            "IRN",
+            "IRQ",
+            "IRL",
+            "IMN",
+            "ISR",
+            "ITA",
+            "JAM",
+            "JPN",
+            "JEY",
+            "JOR",
+            "KAZ",
+            "KEN",
+            "KIR",
+            "PRK",
+            "KOR",
+            "KWT",
+            "KGZ",
+            "LAO",
+            "LVA",
+            "LBN",
+            "LSO",
+            "LBR",
+            "LBY",
+            "LIE",
+            "LTU",
+            "LUX",
+            "MAC",
+            "MKD",
+            "MDG",
+            "MWI",
+            "MYS",
+            "MDV",
+            "MLI",
+            "MLT",
+            "MHL",
+            "MTQ",
+            "MRT",
+            "MUS",
+            "MYT",
+            "MEX",
+            "FSM",
+            "MDA",
+            "MCO",
+            "MNG",
+            "MNE",
+            "MSR",
+            "MAR",
+            "MOZ",
+            "MMR",
+            "NAM",
+            "NRU",
+            "NPL",
+            "NLD",
+            "NCL",
+            "NZL",
+            "NIC",
+            "NER",
+            "NGA",
+            "NIU",
+            "NFK",
+            "MNP",
+            "NOR",
+            "OMN",
+            "PAK",
+            "PLW",
+            "PSE",
+            "PAN",
+            "PNG",
+            "PRY",
+            "PER",
+            "PHL",
+            "PCN",
+            "POL",
+            "PRT",
+            "PRI",
+            "QAT",
+            "REU",
+            "ROU",
+            "RUS",
+            "RWA",
+            "BLM",
+            "SHN",
+            "KNA",
+            "LCA",
+            "MAF",
+            "SPM",
+            "VCT",
+            "WSM",
+            "SMR",
+            "STP",
+            "SAU",
+            "SEN",
+            "SRB",
+            "SYC",
+            "SLE",
+            "SGP",
+            "SXM",
+            "SVK",
+            "SVN",
+            "SLB",
+            "SOM",
+            "ZAF",
+            "SGS",
+            "SSD",
+            "ESP",
+            "LKA",
+            "SDN",
+            "SUR",
+            "SJM",
+            "SWZ",
+            "SWE",
+            "CHE",
+            "SYR",
+            "TWN",
+            "TJK",
+            "TZA",
+            "THA",
+            "TLS",
+            "TGO",
+            "TKL",
+            "TON",
+            "TTO",
+            "TUN",
+            "TUR",
+            "TKM",
+            "TCA",
+            "TUV",
+            "UGA",
+            "UKR",
+            "ARE",
+            "GBR",
+            "USA",
+            "UMI",
+            "URY",
+            "UZB",
+            "VUT",
+            "VEN",
+            "VNM",
+            "VGB",
+            "VIR",
+            "WLF",
+            "ESH",
+            "YEM",
+            "ZMB",
+            "ZWE"
+          ],
           "title": "Project Country",
           "type": "string"
         },
@@ -2343,7 +1993,7 @@
         "project_image": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/url"
             },
             {
               "type": "null"
@@ -2382,7 +2032,7 @@
         "data_entry_contact_email": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/email"
             },
             {
               "type": "null"
@@ -2458,6 +2108,35 @@
           "default": null,
           "description": "List of third-party certifications or commitment programs the project is pursuing.",
           "title": "Project Certifications Commitments"
+        },
+        "project_certifications_commitments_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "If 'Other' selected for project certifications/commitments, provide additional detail.",
+          "title": "Project Certifications Commitments Other"
+        }
+      },
+      "dependentSchemas": {
+        "project_certifications_commitments": {
+          "if": {
+            "properties": {
+              "project_certifications_commitments": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "project_certifications_commitments_other"
+            ]
+          }
         }
       },
       "required": [
@@ -2476,8 +2155,7 @@
         "project_construction_date_completion": {
           "anyOf": [
             {
-              "format": "date",
-              "type": "string"
+              "$ref": "#/$defs/iso_date"
             },
             {
               "type": "null"
@@ -2509,8 +2187,7 @@
         "project_construction_date_start": {
           "anyOf": [
             {
-              "format": "date",
-              "type": "string"
+              "$ref": "#/$defs/iso_date"
             },
             {
               "type": "null"
@@ -2523,13 +2200,7 @@
         "project_construction_date_existing_building": {
           "anyOf": [
             {
-              "format": "date",
-              "type": "string"
-            },
-            {
-              "exclusiveMinimum": 1000,
-              "maximum": 2100,
-              "type": "integer"
+              "$ref": "#/$defs/iso_date"
             },
             {
               "type": "null"
@@ -2565,7 +2236,7 @@
         "gross_floor_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2582,7 +2253,7 @@
         "project_site_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2599,7 +2270,7 @@
         "building_footprint_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2616,7 +2287,7 @@
         "conditioned_floor_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2633,7 +2304,7 @@
         "unconditioned_floor_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2650,7 +2321,7 @@
         "enclosed_parking_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2667,7 +2338,7 @@
         "detached_parking_area": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2710,7 +2381,7 @@
         "building_height": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -2779,7 +2450,7 @@
         "window_wall_ratio": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "maximum": 1.0,
               "type": "number"
             },
@@ -2859,7 +2530,7 @@
         "owner_web_domain": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/url"
             },
             {
               "type": "null"
@@ -2870,13 +2541,256 @@
           "title": "Owner Web Domain"
         },
         "owner_country": {
-          "anyOf": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
+          "enum": [
+            "AFG",
+            "ALA",
+            "ALB",
+            "DZA",
+            "ASM",
+            "AND",
+            "AGO",
+            "AIA",
+            "ATA",
+            "ATG",
+            "ARG",
+            "ARM",
+            "ABW",
+            "AUS",
+            "AUT",
+            "AZE",
+            "BHS",
+            "BHR",
+            "BGD",
+            "BRB",
+            "BLR",
+            "BEL",
+            "BLZ",
+            "BEN",
+            "BMU",
+            "BTN",
+            "BOL",
+            "BES",
+            "BIH",
+            "BWA",
+            "BVT",
+            "BRA",
+            "IOT",
+            "BRN",
+            "BGR",
+            "BFA",
+            "BDI",
+            "KHM",
+            "CMR",
+            "CAN",
+            "CPV",
+            "CYM",
+            "CAF",
+            "TCD",
+            "CHL",
+            "CHN",
+            "CXR",
+            "CCK",
+            "COL",
+            "COM",
+            "COG",
+            "COD",
+            "COK",
+            "CRI",
+            "CIV",
+            "HRV",
+            "CUB",
+            "CUW",
+            "CYP",
+            "CZE",
+            "DNK",
+            "DJI",
+            "DMA",
+            "DOM",
+            "ECU",
+            "EGY",
+            "SLV",
+            "GNQ",
+            "ERI",
+            "EST",
+            "ETH",
+            "FLK",
+            "FRO",
+            "FJI",
+            "FIN",
+            "FRA",
+            "GUF",
+            "PYF",
+            "ATF",
+            "GAB",
+            "GMB",
+            "GEO",
+            "DEU",
+            "GHA",
+            "GIB",
+            "GRC",
+            "GRL",
+            "GRD",
+            "GLP",
+            "GUM",
+            "GTM",
+            "GGY",
+            "GIN",
+            "GNB",
+            "GUY",
+            "HTI",
+            "HMD",
+            "VAT",
+            "HND",
+            "HKG",
+            "HUN",
+            "ISL",
+            "IND",
+            "IDN",
+            "IRN",
+            "IRQ",
+            "IRL",
+            "IMN",
+            "ISR",
+            "ITA",
+            "JAM",
+            "JPN",
+            "JEY",
+            "JOR",
+            "KAZ",
+            "KEN",
+            "KIR",
+            "PRK",
+            "KOR",
+            "KWT",
+            "KGZ",
+            "LAO",
+            "LVA",
+            "LBN",
+            "LSO",
+            "LBR",
+            "LBY",
+            "LIE",
+            "LTU",
+            "LUX",
+            "MAC",
+            "MKD",
+            "MDG",
+            "MWI",
+            "MYS",
+            "MDV",
+            "MLI",
+            "MLT",
+            "MHL",
+            "MTQ",
+            "MRT",
+            "MUS",
+            "MYT",
+            "MEX",
+            "FSM",
+            "MDA",
+            "MCO",
+            "MNG",
+            "MNE",
+            "MSR",
+            "MAR",
+            "MOZ",
+            "MMR",
+            "NAM",
+            "NRU",
+            "NPL",
+            "NLD",
+            "NCL",
+            "NZL",
+            "NIC",
+            "NER",
+            "NGA",
+            "NIU",
+            "NFK",
+            "MNP",
+            "NOR",
+            "OMN",
+            "PAK",
+            "PLW",
+            "PSE",
+            "PAN",
+            "PNG",
+            "PRY",
+            "PER",
+            "PHL",
+            "PCN",
+            "POL",
+            "PRT",
+            "PRI",
+            "QAT",
+            "REU",
+            "ROU",
+            "RUS",
+            "RWA",
+            "BLM",
+            "SHN",
+            "KNA",
+            "LCA",
+            "MAF",
+            "SPM",
+            "VCT",
+            "WSM",
+            "SMR",
+            "STP",
+            "SAU",
+            "SEN",
+            "SRB",
+            "SYC",
+            "SLE",
+            "SGP",
+            "SXM",
+            "SVK",
+            "SVN",
+            "SLB",
+            "SOM",
+            "ZAF",
+            "SGS",
+            "SSD",
+            "ESP",
+            "LKA",
+            "SDN",
+            "SUR",
+            "SJM",
+            "SWZ",
+            "SWE",
+            "CHE",
+            "SYR",
+            "TWN",
+            "TJK",
+            "TZA",
+            "THA",
+            "TLS",
+            "TGO",
+            "TKL",
+            "TON",
+            "TTO",
+            "TUN",
+            "TUR",
+            "TKM",
+            "TCA",
+            "TUV",
+            "UGA",
+            "UKR",
+            "ARE",
+            "GBR",
+            "USA",
+            "UMI",
+            "URY",
+            "UZB",
+            "VUT",
+            "VEN",
+            "VNM",
+            "VGB",
+            "VIR",
+            "WLF",
+            "ESH",
+            "YEM",
+            "ZMB",
+            "ZWE"
           ],
           "default": null,
           "description": "Location of owner headquarters (country), as ISO3166-Alpha3.",
@@ -2885,7 +2799,7 @@
         "owner_email": {
           "anyOf": [
             {
-              "type": "string"
+              "$ref": "#/$defs/email"
             },
             {
               "type": "null"
@@ -2918,6 +2832,19 @@
           "default": null,
           "description": "Type of owner (e.g., Government, Corporate, Non-Profit).",
           "title": "Owner Type"
+        },
+        "owner_type_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "If 'Other' selected for owner type, provide additional detail.",
+          "title": "Owner Type Other"
         },
         "owners_representative": {
           "anyOf": [
@@ -3061,6 +2988,22 @@
           "default": null,
           "description": "Other project stakeholder organization.",
           "title": "Other Project Team"
+        }
+      },
+      "dependentSchemas": {
+        "owner_type": {
+          "if": {
+            "properties": {
+              "owner_type": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "owner_type_other"
+            ]
+          }
         }
       },
       "title": "response_ProjectTeamContact",
@@ -3364,11 +3307,40 @@
           "title": "Project Historic"
         }
       },
+      "dependentSchemas": {
+        "asset_type": {
+          "if": {
+            "properties": {
+              "asset_type": {
+                "const": "Building"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "building_construction_type",
+              "building_use_type"
+            ]
+          }
+        },
+        "asset_type": {
+          "if": {
+            "properties": {
+              "asset_type": {
+                "const": "Infrastructure"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "infrastructure_construction_type",
+              "infrastructure_use_type"
+            ]
+          }
+        }
+      },
       "required": [
-        "asset_type",
-        "building_construction_type",
-        "building_use_type",
-        "infrastructure_construction_type"
+        "asset_type"
       ],
       "title": "response_ProjectUseConstruction",
       "type": "object"
@@ -3423,7 +3395,7 @@
         "system_column_grid_long": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -3459,7 +3431,7 @@
         "system_snow_load": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -3476,7 +3448,7 @@
         "system_wind_speed_asce7": {
           "anyOf": [
             {
-              "exclusiveMinimum": 0.0,
+              "minimum": 0.0,
               "type": "number"
             },
             {
@@ -3934,6 +3906,204 @@
       },
       "title": "response_Verification",
       "type": "object"
+    },
+    "response_LCAResults": {
+      "properties": {
+        "gwp_total": {
+          "title": "Project GWP Total",
+          "description": "Total project GWP in kilograms of CO2 equivalent.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "gwp_intensity_per_building_area": {
+          "title": "Project GWP Intensity Per Building Area",
+          "description": "Total project GWP intensity per building area in kgCO2e/m2.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "gwp_total_site_area": {
+          "title": "Project GWP Total for Site Elements",
+          "description": "Total project GWP in kgCO2e for any site elements.",
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "A1A2A3": {
+          "description": "Life Cycle Stage A1-A3 Product Stage",
+          "$ref": "#/$defs/impact_set",
+          "required": [
+            "gwp_total"
+          ]
+        },
+        "A4": {
+          "description": "Life Cycle Stage A4 Transportation",
+          "$ref": "#/$defs/impact_set"
+        },
+        "A5_total": {
+          "description": "Life Cycle Stage A5 Construction Installation Process. If more granular breakout of A5 emissions is provided, the below referenced values are the sum of each sub-stage (A5.1-A5.4)",
+          "$ref": "#/$defs/impact_set"
+        },
+        "A5_1": {
+          "description": "Life Cycle Stage A5.1 Pre-Construction Demolition includes Demolition/ deconstruction of existing buildings and structures, and/ or parts thereof, including transport from site and waste processing of removed materials.",
+          "$ref": "#/$defs/impact_set"
+        },
+        "A5_2": {
+          "description": "Life Cycle Stage A5.2 Construction Activities includes Site preparation; temporary works; ground works; connection to utilities; transport and onsite storage of construction products, materials and equipment; onsite production/assembly of products; works for the installation and ancillary materials (e.g. formworks and their disposal); heating/ cooling/ventilation of site facilities; energy and water use for construction processes and landscaping",
+          "$ref": "#/$defs/impact_set"
+        },
+        "A5_3": {
+          "description": "Life Cycle Stage A5.3 Waste and Waste Management includes Production, transportation, storage and end-of-life treatment and disposal of any material/waste onsite; transport, waste management and disposal of packing materials.",
+          "$ref": "#/$defs/impact_set"
+        },
+        "A5_4": {
+          "description": "Life Cycle Stage A5.4 Worker Transport includes emissions of site workers traveling to and from site.",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B1_total": {
+          "description": "Life Cycle Stage B1 Use Stage - Installed product in use. If more granular breakout provided for stages B1.1 and B1.2, this is the sum of those.",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B1_1": {
+          "description": "Life Cycle Stage B1.1 - Material Emissions and Uptake",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B1_2": {
+          "description": "Life Cycle Stage B1.1 - Fugitive Emissions",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B2": {
+          "description": "Life Cycle Stage B2 - Maintenance Emissions",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B3": {
+          "description": "Life Cycle Stage B3 - Repair Emissions",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B4": {
+          "description": "Life Cycle Stage B4 - Replacement Emissions",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B5": {
+          "description": "Life Cycle Stage B5 - Refurbishment Emissions",
+          "$ref": "#/$defs/impact_set"
+        },
+        "B6": {
+          "properties": {
+            "impacts": {
+              "description": "Life Cycle Stage B6 - Operational Energy",
+              "$ref": "#/$defs/impact_set"
+            },
+            "energy_use_predicted_net": {
+              "description": "What is the overall predicted net (less on site renewable energy generation) energy use in kBTU?",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "energy_use_predicted_gross": {
+              "description": "What is the overall predicted gross Energy use in kBTU?",
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          }
+        },
+        "B7": {
+          "description": "Life Cycle Stage B7 - Operational Water Use",
+          "properties": {
+            "impacts": {
+              "description": "Life Cycle Stage B6 - Operational Energy",
+              "$ref": "#/$defs/impact_set"
+            },
+            "water_source_provider": {
+              "description": "Name of water source provider or wastewater handling utility",
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            }
+          }
+        },
+        "B8": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage B8 - Other Operational Processes"
+        },
+        "C1": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage C1 - Deconstruction"
+        },
+        "C2": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage C2 - EOL Transport"
+        },
+        "C3": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage C3 - Waste Processing for Recovery"
+        },
+        "C4": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage C3 - EOL Disposal"
+        },
+        "D_total": {
+          "$ref": "#/$defs/impact_set",
+          "default": null,
+          "description": "Life Cycle Stage D - Benefits and loads beyond the system boundary (Reuse, Recovery, Recycling potential). If more granular breakout of D stage results provided (D1 and D2), this is the sum of those."
+        },
+        "D1": {
+          "description": "Life Cycle Stage D1 - All environmental loads and benedits from future substitution of resources due to reused products, recycled materials, secondary fuelds, and recovered energy leaving a project for use in a subsequent product system as material.",
+          "$ref": "#/$defs/impact_set",
+          "default": null
+        },
+        "D2": {
+          "description": "Life Cycle Stage D2 - All environmental loads and benefits for recovered and exported energy used to meet the energy demand outside of the project.",
+          "$ref": "#/$defs/impact_set",
+          "default": null
+        }
+      },
+      "required": [
+        "gwp_total"
+      ]
     }
   },
   "properties": {
@@ -3983,6 +4153,31 @@
       "$ref": "#/$defs/response_ReductionStrategies"
     }
   },
+      "if": {
+        "properties": {
+          "response_ProjectUseConstruction": {
+            "properties": {
+              "asset_type": {
+                "const": "Infrastructure"
+              }
+            },
+            "required": [
+              "asset_type"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "response_ProjectTeamContact": {
+            "properties": {
+              "interior_designer": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      },
   "required": [
     "project_description",
     "project_team",
@@ -3999,7 +4194,5 @@
     "inclusions",
     "lca_results",
     "reduction_strategies"
-  ],
-  "title": "nested_ECHO",
-  "type": "object"
+  ]
 }
