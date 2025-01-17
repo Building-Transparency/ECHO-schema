@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Schema Validator</title>
+</head>
+<body>
+
+  <h1>ECHO object validator</h1>
+
+  <label for="jsonInput">JSON Input:</label><br>
+  <textarea id="jsonInput" rows="10" cols="50"></textarea><br><br>
+
+  <button onclick="validateJSON()">Validate</button>
+
+  <div id="result"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.17.1/ajv2020.bundle.js"></script> 
+  <script>
+    async function validateJSON() {
+      const jsonInput = document.getElementById('jsonInput').value;
+
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/Building-Transparency/ECHO-schema/refs/heads/feature/jsonschema_and_validation/jsonschemas/nested_echo_schema.json'); 
+        const schema = await response.json(); 
+
+        var Ajv = window.ajv2020;
+        var ajv = new Ajv({ allErrors: false, verbose: true, strict: false });
+        const validate = ajv.compile(schema); 
+
+        if (validate(JSON.parse(jsonInput))) {
+          document.getElementById('result').innerHTML = '<p style="color:green;">Valid JSON against schema!</p>';
+        } else {
+          document.getElementById('result').innerHTML = '<p style="color:red;">Invalid JSON against schema: ' + validate.errors + '</p>';
+        }
+      } catch (error) {
+        document.getElementById('result').innerHTML = '<p style="color:red;">Error: ' + error + '</p>';
+      }
+    }
+  </script>
+
+</body>
+</html>
