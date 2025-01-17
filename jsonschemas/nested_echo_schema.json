@@ -4434,7 +4434,7 @@
               }
             }
           }
-        },
+        }
       },
       "required": [
         "asset_type"
