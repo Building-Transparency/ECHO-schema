@@ -1562,7 +1562,7 @@
       "dependentSchemas": {
         "bio_sustainability_certification": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "bio_sustainability_certification": {
@@ -1575,7 +1575,9 @@
               {
                 "properties": {
                   "bio_sustainability_certification": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1589,7 +1591,7 @@
         },
         "refrigerant_type": {
           "if": {
-           "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "refrigerant_type": {
@@ -1602,7 +1604,9 @@
               {
                 "properties": {
                   "refrigerant_type": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1616,7 +1620,7 @@
         },
         "substructure_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "substructure_scope": {
@@ -1629,7 +1633,9 @@
               {
                 "properties": {
                   "substructure_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1643,7 +1649,7 @@
         },
         "shell_superstructure_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "shell_superstructure_scope": {
@@ -1656,7 +1662,9 @@
               {
                 "properties": {
                   "shell_superstructure_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1670,7 +1678,7 @@
         },
         "shell_exterior_enclosure_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "shell_exterior_enclosure_scope": {
@@ -1683,7 +1691,9 @@
               {
                 "properties": {
                   "shell_exterior_enclosure_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1697,7 +1707,7 @@
         },
         "interior_construction_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "interior_construction_scope": {
@@ -1710,7 +1720,9 @@
               {
                 "properties": {
                   "interior_construction_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1724,7 +1736,7 @@
         },
         "interior_finishes_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "interior_finishes_scope": {
@@ -1737,7 +1749,9 @@
               {
                 "properties": {
                   "interior_finishes_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1751,7 +1765,7 @@
         },
         "services_mechanical_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "services_mechanical_scope": {
@@ -1764,7 +1778,9 @@
               {
                 "properties": {
                   "services_mechanical_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1778,7 +1794,7 @@
         },
         "services_electrical_scope": {
           "if": {
-           "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "services_electrical_scope": {
@@ -1791,7 +1807,9 @@
               {
                 "properties": {
                   "services_electrical_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1805,7 +1823,7 @@
         },
         "services_plumbing_scope": {
           "if": {
-           "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "services_plumbing_scope": {
@@ -1818,7 +1836,9 @@
               {
                 "properties": {
                   "services_plumbing_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1832,7 +1852,7 @@
         },
         "sitework_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "sitework_scope": {
@@ -1845,7 +1865,9 @@
               {
                 "properties": {
                   "sitework_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1859,7 +1881,7 @@
         },
         "equipment_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "equipment_scope": {
@@ -1872,7 +1894,9 @@
               {
                 "properties": {
                   "equipment_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
@@ -1886,7 +1910,7 @@
         },
         "furnishings_scope": {
           "if": {
-            "allOf":[
+            "allOf": [
               {
                 "properties": {
                   "furnishings_scope": {
@@ -1899,7 +1923,9 @@
               {
                 "properties": {
                   "furnishings_scope": {
-                      "not":{"const": null}
+                    "not": {
+                      "const": null
+                    }
                   }
                 }
               }
