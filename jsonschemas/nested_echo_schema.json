@@ -17,61 +17,64 @@
     },
     "building_use_type": {
       "description": "The usage type. Required if project type is building.",
-      "enum": [
-        "Airport",
-        "Bank/Financial Institution",
-        "Courthouse",
-        "Data Center",
-        "Education: General",
-        "Education: College/University (campus-level)",
-        "Education: K-12 School",
-        "Food Sales: Convenience Store (w/ or w/out gas station)",
-        "Food Sales:General",
-        "Food Sales: Supermarket/Grocery",
-        "Food Service: Fast Food",
-        "Food Service: General",
-        "Food Service: Restaurant/Cafeteria",
-        "Health Care: Clinic",
-        "Health Care: Inpatient",
-        "Health Care: Medical Office",
-        "Health Care: Nursing/Assisted Living",
-        "Health Care: Outpatient",
-        "Laboratory",
-        "Lodging: General",
-        "Lodging: Hotel/Motel",
-        "Lodging: Residence Hall/Dormitory",
-        "Retail Store",
-        "Retail: Non-mall, Vehicle Dealerships, misc.",
-        "Retail: Mall",
-        "Office: Small (<10,000 sf/930 m2)",
-        "Office: Medium (<100,000 sf/9300 m2)",
-        "Office: Large (>100,000 sf/9300 m2)",
-        "Parking",
-        "Public Assembly: General",
-        "Public Assembly: Entertainment/Culture",
-        "Public Assembly: Library",
-        "Public Assembly: Recreation",
-        "Public Assembly: Social/Meeting",
-        "Public Safety: General",
-        "Public Safety: Fire/Police Station",
-        "Religious Worship",
-        "Residential: Mobile Homes",
-        "Residential: Multifamily (2-4 units)",
-        "Residential: Multifamily (5 or more units)",
-        "Residential: Single-Family Attached",
-        "Residential: Single-Family Detached",
-        "Residential: Mid-Rise/High-Rise",
-        "Service (vehicle repair/service, postal service)",
-        "Warehouse: Self-storage",
-        "Storage: Distribution/Shipping Center",
-        "Storage: General",
-        "Storage: Non-refrigerated warehouse",
-        "Storage: Refrigerated warehouse",
-        "Vacant",
-        "Other"
-      ],
-      "title": "Building Use Type",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Airport",
+          "Bank/Financial Institution",
+          "Courthouse",
+          "Data Center",
+          "Education: General",
+          "Education: College/University (campus-level)",
+          "Education: K-12 School",
+          "Food Sales: Convenience Store (w/ or w/out gas station)",
+          "Food Sales:General",
+          "Food Sales: Supermarket/Grocery",
+          "Food Service: Fast Food",
+          "Food Service: General",
+          "Food Service: Restaurant/Cafeteria",
+          "Health Care: Clinic",
+          "Health Care: Inpatient",
+          "Health Care: Medical Office",
+          "Health Care: Nursing/Assisted Living",
+          "Health Care: Outpatient",
+          "Laboratory",
+          "Lodging: General",
+          "Lodging: Hotel/Motel",
+          "Lodging: Residence Hall/Dormitory",
+          "Retail Store",
+          "Retail: Non-mall, Vehicle Dealerships, misc.",
+          "Retail: Mall",
+          "Office: Small (<10,000 sf/930 m2)",
+          "Office: Medium (<100,000 sf/9300 m2)",
+          "Office: Large (>100,000 sf/9300 m2)",
+          "Parking",
+          "Public Assembly: General",
+          "Public Assembly: Entertainment/Culture",
+          "Public Assembly: Library",
+          "Public Assembly: Recreation",
+          "Public Assembly: Social/Meeting",
+          "Public Safety: General",
+          "Public Safety: Fire/Police Station",
+          "Religious Worship",
+          "Residential: Mobile Homes",
+          "Residential: Multifamily (2-4 units)",
+          "Residential: Multifamily (5 or more units)",
+          "Residential: Single-Family Attached",
+          "Residential: Single-Family Detached",
+          "Residential: Mid-Rise/High-Rise",
+          "Service (vehicle repair/service, postal service)",
+          "Warehouse: Self-storage",
+          "Storage: Distribution/Shipping Center",
+          "Storage: General",
+          "Storage: Non-refrigerated warehouse",
+          "Storage: Refrigerated warehouse",
+          "Vacant",
+          "Other"
+        ]
+      },
+      "title": "Building Use Type"
     },
     "infrastructure_construction_type": {
       "description": "Infrastructure construction type.",
@@ -113,6 +116,7 @@
     "infrastructure_use_type": {
       "anyOf": [
         {
+          "type": "array",
           "items": {
             "enum": [
               "Agriculture/Farm",
@@ -156,8 +160,7 @@
               "Other: Site"
             ],
             "type": "string"
-          },
-          "type": "array"
+          }
         },
         {
           "type": "null"
@@ -223,6 +226,110 @@
       ],
       "description": "A number value for areas. Includes unit type information."
     },
+    "number_length": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "ft",
+            "m",
+            "in",
+            "cm",
+            "yd",
+            "km",
+            "mi"
+          ]
+        }
+      },
+      "required": [
+        "value",
+        "unit"
+      ],
+      "description": "A number value for distance / length. Includes unit type information."
+
+    },
+    "end_use_item":{
+      "type": "object",
+      "properties": {
+        "energy": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "default": 50
+            },
+            "unit": {
+              "type": "string",
+              "enum": ["kWh"],
+              "default": "kWh"
+            }
+          },
+          "required": ["value", "unit"]
+        },
+        "fuel_type": {
+          "type": "string",
+          "enum": ["Grid Electricity"],
+          "default": "Grid Electricity"
+        },
+        "carbon_factor": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "number",
+              "minimum": 0,
+              "default": 10
+            },
+            "unit": {
+              "type": "string",
+              "enum": ["kgCO2e/kWh"],
+              "default": "kgCO2e/kWh"
+            }
+          },
+          "required": ["value", "unit"]
+        }
+      },
+      "required": ["energy", "fuel_type", "carbon_factor"]
+    },
+    "end_use":{
+      "type": "object",
+      "properties":{
+        "internal_lighting": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "exterior_lighting": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "receptacle_equipment": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "elevators_escalators": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "refrigeration": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "other_processes": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "space_heating": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "service_water_heating": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "space_cooling": {
+          "$ref": "#/$defs/end_use_item"
+        },
+        "heat_rejection": {
+          "$ref": "#/$defs/end_use_item"
+        }
+    },
     "impact_set": {
       "type": "object",
       "properties": {
@@ -240,7 +347,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP"
         },
         "gwp_fossil": {
@@ -257,7 +367,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],          
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP fossil"
         },
         "gwp_luluc": {
@@ -274,7 +387,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP luluc"
         },
         "gwp_bio_total": {
@@ -291,7 +407,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP biogenic"
         },
         "gwp_bio_emissions": {
@@ -308,7 +427,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP biogenic emissions"
         },
         "gwp_bio_storage": {
@@ -325,7 +447,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg CO2e) of GWP biogenic storage"
         },
         "ap_total": {
@@ -338,11 +463,15 @@
             "unit": {
               "type": "string",
               "enum": [
-                "kg SO2e"
+                "kg SO2e",
+                "kgSO2e"
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg SO2e) of AP (acidification potential of land and water)."
         },
         "ep_total": {
@@ -359,7 +488,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (in kg PO4e) of EP (eutrophication potential)."
         },
         "odp_total": {
@@ -376,7 +508,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],          
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (kg CFC-11e) of ODP (ozone depletion potential)."
         },
         "pocp_total": {
@@ -393,7 +528,10 @@
               ]
             }
           },
-          "required": ["value", "unit"],  
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (kg C2H4e) of POCP (photochemical ozone creation potential, aka photochemical smog potential)."
         },
         "adp_total": {
@@ -407,7 +545,10 @@
               "kg Sbe"
             ]
           },
-        "required": ["value", "unit"],  
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (kg Sbe) of ADP (abiotic depletion potential)."
         },
         "ced_total": {
@@ -424,11 +565,16 @@
               ]
             }
           },
-          "required": ["value", "unit"],  
+          "required": [
+            "value",
+            "unit"
+          ],
           "description": "Total quantity (MJ) of CED (cumulative energy demand)."
         }
       },
-      "required":["gwp_total"]
+      "required": [
+        "gwp_total"
+      ]
     },
     "response_BuildingOccupancy": {
       "properties": {
@@ -653,9 +799,6 @@
             {
               "minimum": 0.0,
               "type": "number"
-            },
-            {
-              "type": "string"
             },
             {
               "type": "null"
@@ -2216,39 +2359,39 @@
         "project_climate_zone": {
           "anyOf": [
             {
-                "enum": [
-                  "0",
-                  "0A",
-                  "0B",
-                  "1",
-                  "1A",
-                  "1B",
-                  "2",
-                  "2A",
-                  "2B",
-                  "3",
-                  "3A",
-                  "3B",
-                  "3C",
-                  "4",
-                  "4A",
-                  "4B",
-                  "4C",
-                  "5",
-                  "5A",
-                  "5B",
-                  "5C",
-                  "6",
-                  "6A",
-                  "6B",
-                  "7",
-                  "7A",
-                  "7B",
-                  "8",
-                  "8A",
-                  "8B"
-                ],
-                "type": "string"
+              "enum": [
+                "0",
+                "0A",
+                "0B",
+                "1",
+                "1A",
+                "1B",
+                "2",
+                "2A",
+                "2B",
+                "3",
+                "3A",
+                "3B",
+                "3C",
+                "4",
+                "4A",
+                "4B",
+                "4C",
+                "5",
+                "5A",
+                "5B",
+                "5C",
+                "6",
+                "6A",
+                "6B",
+                "7",
+                "7A",
+                "7B",
+                "8",
+                "8A",
+                "8B"
+              ],
+              "type": "string"
             },
             {
               "type": "null"
@@ -2559,8 +2702,7 @@
         "gross_floor_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2570,11 +2712,23 @@
           "description": "Gross floor area (GFA) associated with the selected usage type. Required if project type is building.",
           "title": "Gross Floor Area"
         },
+        "built_floor_area": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/number_area"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Equals the gross floor area plus parking area located inside the building shell/enclosed attached parking. Also referred to as constructed floor area",
+          "title": "Built Floor Area"
+        },
         "project_site_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2587,8 +2741,7 @@
         "building_footprint_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2599,7 +2752,14 @@
           "title": "Building Footprint Area"
         },
         "conditioned_floor_area": {
-          "$ref": "#/$defs/number_area",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/number_area"
+            },
+            {
+              "type": "null"
+            }
+          ],          
           "default": null,
           "description": "The floor area within the building that is conditioned. Recommended if reporting operational carbon.",
           "title": "Conditioned Floor Area"
@@ -2607,8 +2767,7 @@
         "unconditioned_floor_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2621,8 +2780,7 @@
         "enclosed_parking_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2635,8 +2793,7 @@
         "detached_parking_area": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2677,11 +2834,7 @@
         "building_height": {
           "anyOf": [
             {
-              "minimum": 0.0,
-              "type": "number"
-            },
-            {
-              "type": "string"
+              "$ref": "#/$defs/number_length"
             },
             {
               "type": "null"
@@ -2694,8 +2847,7 @@
         "surface_parking_area": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0.0
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2708,8 +2860,7 @@
         "detached_parking_structure_area": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0.0
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2736,8 +2887,7 @@
         "mean_roof_height": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0.0
+              "$ref": "#/$defs/number_length"
             },
             {
               "type": "null"
@@ -2765,8 +2915,7 @@
         "thermal_envelope_area": {
           "anyOf": [
             {
-              "type": "number",
-              "minimum": 0.0
+              "$ref": "#/$defs/number_area"
             },
             {
               "type": "null"
@@ -2794,8 +2943,7 @@
         }
       },
       "required": [
-        "project_units",
-        "gfa_measurement_method"
+        "project_units"
       ],
       "title": "response_ProjectSize",
       "type": "object"
@@ -3335,13 +3483,20 @@
           "title": "Asset Type",
           "type": "string"
         },
-        "construction_type":{
+        "construction_type": {
           "type": "string"
         },
-        "use_type":{
-          "type": "string"
+        "use_type": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array"
+            }
+          ]
         },
-        "sector_type":{
+        "sector_type": {
           "anyOf": [
             {
               "type": "string"
@@ -3351,10 +3506,10 @@
             }
           ]
         },
-        "sector_type_other":{
+        "sector_type_other": {
           "type": "string"
         },
-        "use_type_other":{
+        "use_type_other": {
           "anyOf": [
             {
               "type": "string"
@@ -3507,6 +3662,11 @@
               },
               "sector_type": {
                 "const": null
+              },
+              "project_size":{
+                "required": [
+                  "gfa_measurement_method"
+                ]
               }
             },
             "required": [
@@ -3517,9 +3677,6 @@
           },
           "else": {
             "properties": {
-              "asset_type": {
-                "const": "Infrastructure"
-              },
               "construction_type": {
                 "$ref": "#/$defs/infrastructure_construction_type"
               },
@@ -3538,47 +3695,47 @@
           }
         },
         "use_type": {
-            "if": {
-              "properties": {
-                "use_type": {
-                  "const": "Other"
-                }
-              }
-            },
-            "then": {
-              "required": [
-                "use_type_other"
-              ]
-            },
-            "else": {
-              "properties": {
-                "use_type_other": {
-                  "const": null
-                }
+          "if": {
+            "properties": {
+              "use_type": {
+                "const": "Other"
               }
             }
           },
-          "sector_type": {
-            "if": {
-              "properties": {
-                "sector_type": {
-                  "const": "Other"
-                }
-              }
-            },
-            "then": {
-              "required": [
-                "sector_type_other"
-              ]
-            },
-            "else": {
-              "properties": {
-                "sector_type_other": {
-                  "const": null
-                }
+          "then": {
+            "required": [
+              "use_type_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "use_type_other": {
+                "const": null
               }
             }
           }
+        },
+        "sector_type": {
+          "if": {
+            "properties": {
+              "sector_type": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "sector_type_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "sector_type_other": {
+                "const": null
+              }
+            }
+          }
+        }
       },
       "required": [
         "asset_type"
@@ -4013,6 +4170,7 @@
       "type": "object"
     },
     "response_Verification": {
+      "additionalProperties": false,
       "properties": {
         "assessment_verified": {
           "anyOf": [
@@ -4166,11 +4324,14 @@
               ]
             }
           },
-          "required": ["value", "unit"]
+          "required": [
+            "value",
+            "unit"
+          ]
         },
         "gwp_intensity_per_building_area": {
           "title": "Project GWP Intensity Per Building Area",
-          "description": "Total project GWP intensity per building area in kgCO2e/m2.",
+          "description": "Total project GWP intensity per building area in kg CO2e/m2.",
           "type": "object",
           "properties": {
             "value": {
@@ -4180,11 +4341,14 @@
             "unit": {
               "type": "string",
               "enum": [
-                "kgCO2e/m2"
+                "kg CO2e/m2"
               ]
             }
           },
-          "required": ["value", "unit"]
+          "required": [
+            "value",
+            "unit"
+          ]
         },
         "gwp_total_site_area": {
           "title": "Project GWP Total for Site Elements",
@@ -4262,10 +4426,24 @@
               "$ref": "#/$defs/impact_set"
             },
             "energy_use_predicted_net": {
-              "description": "What is the overall predicted net (less on site renewable energy generation) energy use in kBTU?",
+              "description": "What is the overall predicted net (less on site renewable energy generation) energy use?",
               "anyOf": [
                 {
-                  "type": "number"
+                  "type": "object",
+                  "properties":{ 
+                    "value": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "unit": {
+                      "type": "string",
+                      "enum": [
+                        "kWh",
+                        "MWh",
+                        "kBtu"
+                      ]
+                    }
+                  }
                 },
                 {
                   "type": "null"
@@ -4274,17 +4452,35 @@
               "default": null
             },
             "energy_use_predicted_gross": {
-              "description": "What is the overall predicted gross Energy use in kBTU?",
+              "description": "What is the overall predicted gross Energy use?",
               "anyOf": [
                 {
-                  "type": "number"
+                  "type": "object",
+                  "properties":{ 
+                    "value": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "unit": {
+                      "type": "string",
+                      "enum": [
+                        "kWh",
+                        "MWh",
+                        "kBtu"
+                      ]
+                    }
+                  }
                 },
                 {
                   "type": "null"
                 }
               ],
               "default": null
-            }
+            },
+            "end_use": {
+              "description": "The end uses of the energy consumption.",
+              "$ref": "#/$defs/end_use"
+              }
           }
         },
         "B7": {
@@ -4422,9 +4618,25 @@
           "building_occupancy": {
             "const": null
           },
-          "project_team":{
-            "properties":{
+          "project_team": {
+            "properties": {
               "interior_designer": {
+                "const": null
+              }
+            }
+          },
+          "project_size":{
+            "properties": {
+              "gross_floor_area": {
+                "const": null
+              },
+              "built_floor_area": {
+                "const": null
+              },
+              "gfa_measurement_method": {
+                "const": null
+              },
+              "gfa_measurement_method_other": {
                 "const": null
               }
             }
@@ -4454,17 +4666,20 @@
           },
           "project_use_construction_type": {
             "properties": {
-              "energy_code":{ 
-                "const": null 
+              "energy_code": {
+                "const": null
               },
-              "IBC_Construction_Type":{ 
-                "const": null 
+              "IBC_Construction_Type": {
+                "const": null
               }
             }
-            },
+          },
           "project_size": {
             "properties": {
               "gross_floor_area": {
+                "const": null
+              },
+              "built_floor_area": {
                 "const": null
               },
               "gfa_measurement_method": {
@@ -4474,9 +4689,9 @@
                 "const": null
               }
             }
-            },
-          "project_team":{
-            "properties":{
+          },
+          "project_team": {
+            "properties": {
               "interior_designer": {
                 "const": null
               }
@@ -4501,5 +4716,7 @@
     "inclusions",
     "lca_results",
     "reduction_strategies"
-  ]
+  ],
+  "additionalProperties": false
+}
 }
