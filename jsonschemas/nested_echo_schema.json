@@ -74,6 +74,7 @@
           "Other"
         ]
       },
+      "uniqueItems": true,
       "title": "Building Use Type"
     },
     "infrastructure_construction_type": {
@@ -117,6 +118,7 @@
       "anyOf": [
         {
           "type": "array",
+          "uniqueItems": true,
           "items": {
             "enum": [
               "Agriculture/Farm",
@@ -156,8 +158,7 @@
               "Water Distribution",
               "Water Treatment",
               "Waterway",
-              "Other: Infrastructure",
-              "Other: Site"
+              "Other"
             ],
             "type": "string"
           }
@@ -220,6 +221,7 @@
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "value",
         "unit"
@@ -246,14 +248,14 @@
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "value",
         "unit"
       ],
       "description": "A number value for distance / length. Includes unit type information."
-
     },
-    "end_use_item":{
+    "end_use_item": {
       "type": "object",
       "properties": {
         "energy": {
@@ -266,15 +268,23 @@
             },
             "unit": {
               "type": "string",
-              "enum": ["kWh"],
+              "enum": [
+                "kWh"
+              ],
               "default": "kWh"
             }
           },
-          "required": ["value", "unit"]
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "unit"
+          ]
         },
         "fuel_type": {
           "type": "string",
-          "enum": ["Grid Electricity"],
+          "enum": [
+            "Grid Electricity"
+          ],
           "default": "Grid Electricity"
         },
         "carbon_factor": {
@@ -287,18 +297,28 @@
             },
             "unit": {
               "type": "string",
-              "enum": ["kgCO2e/kWh"],
+              "enum": [
+                "kgCO2e/kWh"
+              ],
               "default": "kgCO2e/kWh"
             }
           },
-          "required": ["value", "unit"]
+          "additionalProperties": false,
+          "required": [
+            "value",
+            "unit"
+          ]
         }
       },
-      "required": ["energy", "fuel_type", "carbon_factor"]
+      "required": [
+        "energy",
+        "fuel_type",
+        "carbon_factor"
+      ]
     },
-    "end_use":{
+    "end_use": {
       "type": "object",
-      "properties":{
+      "properties": {
         "internal_lighting": {
           "$ref": "#/$defs/end_use_item"
         },
@@ -329,6 +349,8 @@
         "heat_rejection": {
           "$ref": "#/$defs/end_use_item"
         }
+      },
+      "additionalProperties": false
     },
     "impact_set": {
       "type": "object",
@@ -347,6 +369,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -367,6 +390,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -387,6 +411,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -407,6 +432,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -415,6 +441,7 @@
         },
         "gwp_bio_emissions": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "value": {
               "type": "number",
@@ -447,6 +474,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -468,6 +496,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -488,6 +517,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -508,6 +538,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -528,6 +559,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -565,6 +597,7 @@
               ]
             }
           },
+          "additionalProperties": false,
           "required": [
             "value",
             "unit"
@@ -572,6 +605,7 @@
           "description": "Total quantity (MJ) of CED (cumulative energy demand)."
         }
       },
+      "additionalProperties": false,
       "required": [
         "gwp_total"
       ]
@@ -650,6 +684,7 @@
           "title": "Bedroom Count"
         }
       },
+      "additionalProperties": false,
       "title": "response_BuildingOccupancy",
       "type": "object"
     },
@@ -699,11 +734,22 @@
             "TRNSYS",
             "URBANopt",
             "WUFI Passive",
-            "Other: String",
-            "Other International: String"
+            "Other"
           ],
           "title": "Tool Energy Model",
           "type": "string"
+        },
+        "tool_energy_model_other": {
+          "description": "Other tool used to perform the energy modeling. Required if reporting operational energy.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "energy_model_methodology_reference": {
           "anyOf": [
@@ -748,6 +794,18 @@
           "default": null,
           "description": "Basis of the global warming potential for energy sources determined on a 20-year or 100-year basis. Recommended.",
           "title": "Gwp Energy Sources Year"
+        },
+        "gwp_energy_sources_year_other": {
+          "description": "Basis of the global warming potential for energy sources determined on a 20-year or 100-year basis, if Other is selected this field is required.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "site_location_weather_data": {
           "anyOf": [
@@ -794,6 +852,18 @@
           "description": "Type of electricity source. Recommended.",
           "title": "Electricity Source"
         },
+        "electricity_source_other": {
+          "description": "Type of electricity source--if other is selected. Recommended.",
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
         "electricity_carbon_factor": {
           "anyOf": [
             {
@@ -822,6 +892,51 @@
           "title": "Electricity Carbon Factor Source"
         }
       },
+      "dependentSchemas": {
+        "tool_energy_model": {
+          "if": {
+            "properties": {
+              "tool_energy_model": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "tool_energy_model_other"
+            ]
+          }
+        },
+        "gwp_energy_sources_year": {
+          "if": {
+            "properties": {
+              "gwp_energy_sources_year": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "gwp_energy_sources_year_other"
+            ]
+          }
+        },
+        "electricity_source": {
+          "if": {
+            "properties": {
+              "electricity_source": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "electricity_source_other"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false,
       "required": [
         "tool_energy_model"
       ],
@@ -870,7 +985,8 @@
                 ],
                 "type": "string"
               },
-              "type": "array"
+              "type": "array",
+              "uniqueItems": true
             },
             {
               "type": "null"
@@ -879,6 +995,17 @@
           "default": null,
           "description": "3rd party certification for sourcing of bio-based and forestry products. Recommended.",
           "title": "Bio Sustainability Certification"
+        },
+        "bio_sustainability_certification_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "biogenic_carbon_description": {
           "anyOf": [
@@ -917,6 +1044,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -926,6 +1054,17 @@
           "default": null,
           "description": "Which substructure components are included in the reported calculations? Recommended.",
           "title": "Substructure Scope"
+        },
+        "substructure_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "shell_superstructure_included": {
           "description": "Is the shell-superstructure physical scope included in the reported calculations?  Required.",
@@ -945,6 +1084,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -954,6 +1094,17 @@
           "default": null,
           "description": "Which superstructure components are included in the reported calculations? Recommended.",
           "title": "Shell Superstructure Scope"
+        },
+        "shell_superstructure_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "shell_exterior_enclosure_included": {
           "description": "Is the shell-exterior enclosure physical scope included in the reported calculations? Required.",
@@ -980,6 +1131,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -989,6 +1141,17 @@
           "default": null,
           "description": "Which shell-exterior enclosure components are included in the reported calculations? Recommended.",
           "title": "Shell Exterior Enclosure Scope"
+        },
+        "shell_exterior_enclosure_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "interior_construction_included": {
           "description": "Is the interiors - construction physical scope included in the reported calculations? Required.",
@@ -1010,6 +1173,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1019,6 +1183,17 @@
           "default": null,
           "description": "Which interior construction components are included in the reported calculations? Recommended.",
           "title": "Interior Construction Scope"
+        },
+        "interior_construction_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "interiors_finishes_included": {
           "description": "Is the interiors - finishes physical scope included in the reported calculations? Required.",
@@ -1039,6 +1214,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1048,6 +1224,17 @@
           "default": null,
           "description": "Which interiors - finishes components are included in the reported calculations? Recommended.",
           "title": "Interior Finishes Scope"
+        },
+        "interior_finishes_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "services_mep_included": {
           "description": "Is the services physical scope included in the reported calculations? Required.",
@@ -1073,6 +1260,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1082,6 +1270,17 @@
           "default": null,
           "description": "Which mechanical components are included in the reported calculations? Recommended.",
           "title": "Services Mechanical Scope"
+        },
+        "services_mechanical_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "services_electrical_scope": {
           "anyOf": [
@@ -1099,6 +1298,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1108,6 +1308,17 @@
           "default": null,
           "description": "Which electrical components are included in the reported calculations? Recommended.",
           "title": "Services Electrical Scope"
+        },
+        "services_electrical_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "services_plumbing_scope": {
           "anyOf": [
@@ -1120,6 +1331,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1129,6 +1341,17 @@
           "default": null,
           "description": "Which plumbing and fire protection components are included in the reported calculations? Recommended.",
           "title": "Services Plumbing Scope"
+        },
+        "services_plumbing_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "sitework_included": {
           "description": "Is the sitework physical scope included in the reported calculations? Required.",
@@ -1150,6 +1373,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1159,6 +1383,17 @@
           "default": null,
           "description": "Which sitework components are included in the reported calculations? Recommended.",
           "title": "Sitework Scope"
+        },
+        "sitework_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "equipment_included": {
           "description": "Is equipment included in the reported calculations? Required.",
@@ -1179,6 +1414,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1188,6 +1424,17 @@
           "default": null,
           "description": "Which equipment components are included in the reported calculations? Recommended.",
           "title": "Equipment Scope"
+        },
+        "equipment_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "furnishings_included": {
           "description": "Are furnishings included in the reported calculations? Required.",
@@ -1205,7 +1452,8 @@
                 ],
                 "type": "string"
               },
-              "type": "array"
+              "type": "array",
+              "uniqueItems": true
             },
             {
               "type": "null"
@@ -1214,6 +1462,17 @@
           "default": null,
           "description": "Which furnishings components are included in the reported calculations? Recommended.",
           "title": "Furnishings Scope"
+        },
+        "furnishings_scope_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "infrastructure_components_included": {
           "anyOf": [
@@ -1228,7 +1487,7 @@
           "description": "Are infrastructure components included in the reported calculations? Recommended.",
           "title": "Infrastructure Components Included"
         },
-        "refrigerant_type_included": {
+        "refrigerant_type": {
           "anyOf": [
             {
               "items": {
@@ -1250,6 +1509,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -1259,6 +1519,17 @@
           "default": null,
           "description": "Which refrigerants were utilized on the project and included in the assessment?",
           "title": "Refrigerant Type Included"
+        },
+        "refrigerant_type_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
         },
         "fossil_gas_leakage": {
           "anyOf": [
@@ -1285,6 +1556,360 @@
           "default": null,
           "description": "Does the project have to meet GWP and/or other LCA requirements as set forth by project owner, federal or local policy, code, project team or other entity? If so, explain the requirements in detail.",
           "title": "Lca Requirements"
+        }
+      },
+      "additionalProperties": false,
+      "dependentSchemas": {
+        "bio_sustainability_certification": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "bio_sustainability_certification": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "bio_sustainability_certification": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "bio_sustainability_certification_other"
+            ]
+          }
+        },
+        "refrigerant_type": {
+          "if": {
+           "allOf":[
+              {
+                "properties": {
+                  "refrigerant_type": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "refrigerant_type": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "refrigerant_type_other"
+            ]
+          }
+        },
+        "substructure_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "substructure_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "substructure_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "substructure_scope_other"
+            ]
+          }
+        },
+        "shell_superstructure_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "shell_superstructure_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "shell_superstructure_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "shell_superstructure_scope_other"
+            ]
+          }
+        },
+        "shell_exterior_enclosure_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "shell_exterior_enclosure_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "shell_exterior_enclosure_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "shell_exterior_enclosure_scope_other"
+            ]
+          }
+        },
+        "interior_construction_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "interior_construction_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "interior_construction_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "interior_construction_scope_other"
+            ]
+          }
+        },
+        "interior_finishes_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "interior_finishes_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "interior_finishes_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "interior_finishes_scope_other"
+            ]
+          }
+        },
+        "services_mechanical_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "services_mechanical_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "services_mechanical_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "services_mechanical_scope_other"
+            ]
+          }
+        },
+        "services_electrical_scope": {
+          "if": {
+           "allOf":[
+              {
+                "properties": {
+                  "services_electrical_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "services_electrical_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "services_electrical_scope_other"
+            ]
+          }
+        },
+        "services_plumbing_scope": {
+          "if": {
+           "allOf":[
+              {
+                "properties": {
+                  "services_plumbing_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "services_plumbing_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "services_plumbing_scope_other"
+            ]
+          }
+        },
+        "sitework_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "sitework_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "sitework_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "sitework_scope_other"
+            ]
+          }
+        },
+        "equipment_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "equipment_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "equipment_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "equipment_scope_other"
+            ]
+          }
+        },
+        "furnishings_scope": {
+          "if": {
+            "allOf":[
+              {
+                "properties": {
+                  "furnishings_scope": {
+                    "contains": {
+                      "const": "Other"
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "furnishings_scope": {
+                      "not":{"const": null}
+                  }
+                }
+              }
+            ]
+          },
+          "then": {
+            "required": [
+              "furnishings_scope_other"
+            ]
+          }
         }
       },
       "required": [
@@ -1681,6 +2306,7 @@
           "default": null
         }
       },
+      "additionalProperties": false,
       "dependentSchemas": {
         "tool_lca": {
           "if": {
@@ -1977,6 +2603,7 @@
           "title": "Cost Notes"
         }
       },
+      "additionalProperties": false,
       "title": "response_ProjectCost",
       "type": "object"
     },
@@ -2553,6 +3180,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -2577,6 +3205,7 @@
           "title": "Project Certifications Commitments Other"
         }
       },
+      "additionalProperties": false,
       "dependentSchemas": {
         "project_certifications_commitments": {
           "if": {
@@ -2665,6 +3294,7 @@
           "title": "Project Construction Date Existing Building"
         }
       },
+      "additionalProperties": false,
       "title": "response_ProjectSchedule",
       "type": "object"
     },
@@ -2759,7 +3389,7 @@
             {
               "type": "null"
             }
-          ],          
+          ],
           "default": null,
           "description": "The floor area within the building that is conditioned. Recommended if reporting operational carbon.",
           "title": "Conditioned Floor Area"
@@ -2926,6 +3556,7 @@
           "title": "Thermal Envelope Area"
         }
       },
+      "additionalProperties": false,
       "dependentSchemas": {
         "gfa_measurement_method": {
           "if": {
@@ -3452,6 +4083,7 @@
           "title": "Other Project Team"
         }
       },
+      "additionalProperties": false,
       "dependentSchemas": {
         "owner_type": {
           "if": {
@@ -3492,7 +4124,8 @@
               "type": "string"
             },
             {
-              "type": "array"
+              "type": "array",
+              "uniqueItems": true
             }
           ]
         },
@@ -3545,6 +4178,16 @@
           "description": "Project energy code used.",
           "title": "Energy Code"
         },
+        "energy_code_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "omniclass_table_11_construction_entity": {
           "anyOf": [
             {
@@ -3578,6 +4221,7 @@
                 ],
                 "type": "string"
               },
+              "uniqueItems": true,
               "type": "array"
             },
             {
@@ -3624,6 +4268,16 @@
           "description": "Identifies whether the lot being developed is a greenfield or brownfield site.",
           "title": "Development Site Type"
         },
+        "development_site_type_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "project_historic": {
           "anyOf": [
             {
@@ -3643,6 +4297,7 @@
           "title": "Project Historic"
         }
       },
+      "additionalProperties": false,
       "dependentSchemas": {
         "asset_type": {
           "if": {
@@ -3663,7 +4318,7 @@
               "sector_type": {
                 "const": null
               },
-              "project_size":{
+              "project_size": {
                 "required": [
                   "gfa_measurement_method"
                 ]
@@ -3698,7 +4353,9 @@
           "if": {
             "properties": {
               "use_type": {
-                "const": "Other"
+                "contains": {
+                  "const": "Other"
+                }
               }
             }
           },
@@ -3735,7 +4392,49 @@
               }
             }
           }
-        }
+        },
+        "energy_code": {
+          "if": {
+            "properties": {
+              "energy_code": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "energy_code_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "energy_code_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "development_site_type": {
+          "if": {
+            "properties": {
+              "development_site_type": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "development_site_type_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "development_site_type_other": {
+                "const": null
+              }
+            }
+          }
+        },
       },
       "required": [
         "asset_type"
@@ -3785,6 +4484,7 @@
           "title": "Reduction Description"
         }
       },
+      "additionalProperties": false,
       "title": "response_ReductionStrategies",
       "type": "object"
     },
@@ -3926,6 +4626,16 @@
           "description": "Primary horizontal gravity system. Recommended.",
           "title": "Primary Horizontal Gravity System"
         },
+        "primary_horizontal_gravity_system_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "primary_vertical_gravity_system": {
           "anyOf": [
             {
@@ -3952,7 +4662,17 @@
           "description": "Primary vertical gravity system. Recommended.",
           "title": "Primary Vertical Gravity System"
         },
-        "system_lateral_system": {
+        "primary_vertical_gravity_system_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "primary_lateral_system": {
           "anyOf": [
             {
               "enum": [
@@ -3977,6 +4697,16 @@
           "default": null,
           "description": "Primary lateral system. Recommended.",
           "title": "System Lateral System"
+        },
+        "primary_lateral_system_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "system_allowable_soil_bearing_pressure": {
           "anyOf": [
@@ -4010,6 +4740,16 @@
           "default": null,
           "description": "Typical foundation type. Recommended.",
           "title": "System Foundation Type"
+        },
+        "system_foundation_type_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
         },
         "system_live_load": {
           "anyOf": [
@@ -4050,6 +4790,16 @@
           "description": "Secondary horizontal gravity system.",
           "title": "Secondary Horizontal Gravity System"
         },
+        "secondary_horizontal_gravity_system_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "secondary_vertical_gravity_system": {
           "anyOf": [
             {
@@ -4076,6 +4826,16 @@
           "description": "Secondary vertical gravity system.",
           "title": "Secondary Vertical Gravity System"
         },
+        "secondary_vertical_gravity_system_other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "system_podium": {
           "anyOf": [
             {
@@ -4095,8 +4855,137 @@
           "title": "System Podium"
         }
       },
+      "additionalProperties": false,
       "title": "response_StructuralSystems",
-      "type": "object"
+      "type": "object",
+      "dependentSchemas": {
+        "primary_horizontal_gravity_system": {
+          "if": {
+            "properties": {
+              "primary_horizontal_gravity_system": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "primary_horizontal_gravity_system_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "primary_horizontal_gravity_system_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "secondary_horizontal_gravity_system": {
+          "if": {
+            "properties": {
+              "secondary_horizontal_gravity_system": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "secondary_horizontal_gravity_system_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "secondary_horizontal_gravity_system_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "primary_vertical_gravity_system": {
+          "if": {
+            "properties": {
+              "primary_vertical_gravity_system": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "primary_vertical_gravity_system_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "primary_vertical_gravity_system_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "secondary_vertical_gravity_system": {
+          "if": {
+            "properties": {
+              "secondary_vertical_gravity_system": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "secondary_vertical_gravity_system_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "secondary_vertical_gravity_system_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "system_foundation_type": {
+          "if": {
+            "properties": {
+              "system_foundation_type": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "system_foundation_type_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "system_foundation_type_other": {
+                "const": null
+              }
+            }
+          }
+        },
+        "primary_lateral_system": {
+          "if": {
+            "properties": {
+              "primary_lateral_system": {
+                "const": "Other"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "primary_lateral_system_other"
+            ]
+          },
+          "else": {
+            "properties": {
+              "primary_lateral_system_other": {
+                "const": null
+              }
+            }
+          }
+        }
+      }
     },
     "response_Uncertainty": {
       "properties": {
@@ -4166,6 +5055,7 @@
           "title": "Assessment Cutoff Method"
         }
       },
+      "additionalProperties": false,
       "title": "response_Uncertainty",
       "type": "object"
     },
@@ -4430,7 +5320,7 @@
               "anyOf": [
                 {
                   "type": "object",
-                  "properties":{ 
+                  "properties": {
                     "value": {
                       "type": "number",
                       "minimum": 0
@@ -4456,7 +5346,7 @@
               "anyOf": [
                 {
                   "type": "object",
-                  "properties":{ 
+                  "properties": {
                     "value": {
                       "type": "number",
                       "minimum": 0
@@ -4480,7 +5370,7 @@
             "end_use": {
               "description": "The end uses of the energy consumption.",
               "$ref": "#/$defs/end_use"
-              }
+            }
           }
         },
         "B7": {
@@ -4545,6 +5435,7 @@
           "default": null
         }
       },
+      "additionalProperties": false,
       "required": [
         "gwp_total"
       ]
@@ -4625,7 +5516,7 @@
               }
             }
           },
-          "project_size":{
+          "project_size": {
             "properties": {
               "gross_floor_area": {
                 "const": null
@@ -4718,5 +5609,4 @@
     "reduction_strategies"
   ],
   "additionalProperties": false
-}
 }
