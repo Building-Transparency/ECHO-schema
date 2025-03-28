@@ -1,648 +1,640 @@
-[
-	{
-  "project": {
-	"id": {
-  	"description": "The unique ID for this building project. Use a standard guid generator.",
-  	"type": "guid",
-  	"example": "cc7d9ada0d744bfe9ddf8b0af480195f",
-  	"requirement": "automatic",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_name": {
-  	"description": "Name of the project. Recommended less than 40 characters.",
-  	"type": "string",
-  	"constraints": "string < 200 chars",
-  	"example": "Example Building 12345",
-  	"requirement": "required",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_description": {
-  	"description": "Project Description.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"date_of_creation": {
-  	"description": "Date of data entry creation (yyyy-mm-dd).",
-  	"type": "ISO Date",
-  	"example": "2022-06-19",
-  	"requirement": "automatic",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"date_of_update": {
-  	"description": "Date of last data entry or edit (yyyy-mm-dd).",
-  	"type": "ISO Datetime",
-  	"example": "2022-07-15",
-  	"requirement": "automatic",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"date_of_submission": {
-  	"description": "Date of data entry submission.",
-  	"type": "ISO Date",
-  	"example": "mm/dd/yyyy",
-  	"requirement": "automatic",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_image": {
-  	"description": "Project Image or Rendering.",
-  	"type": "file upload",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"data_entry_contact_first_name": {
-  	"description": "First Name of the person submitting data on behalf of the project.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"data_entry_contact_last_name": {
-  	"description": "Last Name of the person submitting data on behalf of the project.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"data_entry_contact_email": {
-  	"description": "Email of the person submitting data on behalf of the project.",
-  	"type": "email",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	}
-  }
-},
 {
-  "loc": {
-	"pluscode": {
-  	"description": "Absolute Open Location Code of this location.",
-  	"type": "open-location-code",
-  	"constraints": "requires either lat long or open location code",
-  	"requirement": "automatic",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"project": {
+		"id": {
+			"description": "The unique ID for this building project. Use a standard guid generator.",
+			"type": "guid",
+			"example": "cc7d9ada0d744bfe9ddf8b0af480195f",
+			"requirement": "automatic",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			},
+			"unique": true
+		},
+		"project_name": {
+			"description": "Name of the project. Recommended less than 40 characters.",
+			"type": "string",
+			"constraints": "string < 200 chars",
+			"example": "Example Building 12345",
+			"requirement": "required",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_description": {
+			"description": "Project Description.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"date_of_creation": {
+			"description": "Date of data entry creation (yyyy-mm-dd).",
+			"type": "ISO Date",
+			"example": "2022-06-19",
+			"requirement": "automatic",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"date_of_update": {
+			"description": "Date of last data entry or edit (yyyy-mm-dd).",
+			"type": "ISO Datetime",
+			"example": "2022-07-15",
+			"requirement": "automatic",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"date_of_submission": {
+			"description": "Date of data entry submission.",
+			"type": "ISO Date",
+			"example": "mm/dd/yyyy",
+			"requirement": "automatic",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_image": {
+			"description": "Project Image or Rendering.",
+			"type": "file upload",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"data_entry_contact_first_name": {
+			"description": "First Name of the person submitting data on behalf of the project.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"data_entry_contact_last_name": {
+			"description": "Last Name of the person submitting data on behalf of the project.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"data_entry_contact_email": {
+			"description": "Email of the person submitting data on behalf of the project.",
+			"type": "email",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		}
 	},
-	"project_address": {
-  	"description": "Project address.",
-  	"type": "string",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"loc": {
+		"pluscode": {
+			"description": "Absolute Open Location Code of this location.",
+			"type": "open-location-code",
+			"constraints": "requires either lat long or open location code",
+			"requirement": "automatic",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_address": {
+			"description": "Project address.",
+			"type": "string",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_location_city": {
+			"description": "Project city.",
+			"type": "string",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_address_lookup": {
+			"description": "Project address lookup via Google Maps.",
+			"type": "Google lookup",
+			"example": "Google Maps",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_state_or_province": {
+			"description": "Project state, province, or country subdivision.",
+			"type": "dropdown",
+			"constraints": "Dropdown for US and Canada, otherwise freeform string.",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_country": {
+			"description": "Project country.",
+			"type": "dropdown",
+			"constraints": "ISO3166-Alpha3",
+			"requirement": "required",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_postal_code": {
+			"description": "Project postal code. Only the first 3 digits are required for Canadian projects.",
+			"type": "string",
+			"requirement": "required",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_climate_zone": {
+			"description": "Climate Zone per IECC.",
+			"type": "array",
+			"constraints": "1A; 2A; 2B; 3A; 3B; 3C; 4A; 4B; 4C; 5A; 5B; 5C; 6A; 6B; 7; 8",
+			"example": "Zone 3C (Warm Marine)",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"latlng": {
+			"lat": {
+				"description": "Latitude, as a signed decimal.",
+				"type": "number",
+				"constraints": "-90 ≤ value ≤ 90",
+				"example": "49.24",
+				"requirement": "recommended",
+				"applies_to": {
+					"buildings": true,
+					"infrastructure": true,
+					"sitework": true
+				}
+			},
+			"lng": {
+				"description": "Longitude, as a signed decimal.",
+				"type": "number",
+				"constraints": "-180 ≤ value ≤ 180",
+				"example": "-123.11",
+				"requirement": "recommended",
+				"applies_to": {
+					"buildings": true,
+					"infrastructure": true,
+					"sitework": true
+				}
+			}
+		},
+		"governing_code": {
+			"description": "Local City, County, or State building code version, or IBC/IRC version if no local exists.",
+			"type": "string",
+			"example": "2018 Seattle Building Code",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_data_anonymized": {
+			"description": "Has project data been anonymized?",
+			"type": "boolean",
+			"constraints": "true, false",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_certifications_commitments": {
+			"description": "Is the project pursuing third party certification(s) or submitting data to a commitment program?",
+			"type": "array",
+			"constraints": "LEED v4.0 Certified; LEED v4.0 Silver; LEED v4.0 Gold; LEED v4.0 Platinum; LEED v4.1 Certified; LEED v4.1 Silver; LEED v4.1 Gold; LEED v4.1 Platinum; Envision; BREEAM; ILFI Zero Carbon 1.0; ILFI LBC 3.1; ILFI LBC 4.0; ILFI Zero Energy; Green Globes; SE2050; AIA DDx; MEP 2040; Contractor's Commitment; Climate Positive; SE2050, UK BECD Database; CLF WBLCA v2 Benchmarking Study; Other: String",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		}
 	},
-	"project_location_city": {
-  	"description": "Project city.",
-  	"type": "string",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"project_team_and_contact_information": {
+		"project_owner_contact_first_name": {
+			"description": "First name of the project owner's contact.",
+			"type": "string",
+			"example": "John",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_owner_contact_last_name": {
+			"description": "Last name of the project owner's contact.",
+			"type": "string",
+			"example": "Doe",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owner_organization": {
+			"description": "Name of the owner's organization or company.",
+			"type": "string",
+			"example": "Low Carbon Buildings, LLC",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owner_web_domain": {
+			"description": "Web domain of the owner’s organization.",
+			"type": "url",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owner_country": {
+			"description": "Location of the owner’s headquarters (country).",
+			"type": "dropdown",
+			"constraints": "ISO3166-Alpha3",
+			"example": "Canada",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owner_email": {
+			"description": "Email address of the owner or primary contact.",
+			"type": "string",
+			"example": "johndoe@email.com",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owner_type": {
+			"description": "Type of owner.",
+			"type": "dropdown",
+			"constraints": "Government - Federal; Government - State/Province; Government - Local; Corporate; Higher-Education; Non-Profit; Public-Private Partnership; Investor-Developer; Other: String",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"owners_representative": {
+			"description": "Name of the owner's representative organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		}
+	  },
+	  "org": {
+		"architect_of_record": {
+			"description": "Architect of Record (AOR) organization.",
+			"type": "string",
+			"example": "HKS",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"org_office": {
+			"description": "Studio or office within the firm organization.",
+			"type": "string",
+			"example": "Dallas",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"general_contractor": {
+			"description": "General Contractor (GC) organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"mep_engineer": {
+			"description": "MEP Engineer of Record organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"sustainability_consultant": {
+			"description": "Green Building Consultant organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"structural_engineer": {
+			"description": "Structural Engineer organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"civil_engineer": {
+			"description": "Civil Engineer organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"landscape_consultant": {
+			"description": "Landscape Consultant organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"interior_designer": {
+			"description": "Interior Designer organization.",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": false,
+				"sitework": false
+			}
+		},
+		"other_project_team": {
+			"description": "Other project stakeholder organization (role and firm name).",
+			"type": "string",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		}
 	},
-	"project_address_lookup": {
-  	"description": "Project address lookup via Google Maps.",
-  	"type": "Google lookup",
-  	"example": "Google Maps",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"project_schedule": {
+		"project_status": {
+			"description": "Project status at the time of data submission.",
+			"type": "dropdown",
+			"constraints": "Active, On Hold, Complete, Cancelled",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true
+			}
+		},
+		"project_construction_date_start": {
+			"description": "Anticipated construction start date.",
+			"type": "ISO Date",
+			"example": "05/24/2022",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_construction_date_completion": {
+			"description": "Expected or actual construction end date.",
+			"type": "ISO Date",
+			"requirement": "recommended",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		},
+		"project_construction_date_existing_building": {
+			"description": "Year original asset was constructed (for existing buildings).",
+			"type": "ISO Date (yyyy or mm/dd/yyyy)",
+			"requirement": "optional",
+			"applies_to": {
+				"buildings": true,
+				"infrastructure": true,
+				"sitework": true
+			}
+		}
 	},
-	"project_state_or_province": {
-  	"description": "Project state, province, or country subdivision.",
-  	"type": "dropdown",
-  	"constraints": "Dropdown for US and Canada, otherwise freeform string.",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"project_schedule": {
+		"project_status": {
+			"type": "string",
+			"description": "Project status at the time of data submission.",
+			"enum": ["Active", "On Hold", "Complete", "Cancelled"],
+			"example": "Active",
+			"optional": true
+		},
+		"project_construction_date_start": {
+			"type": "string",
+			"description": "Anticipated construction start date.",
+			"format": "ISO Date",
+			"example": "2022-05-24",
+			"optional": true
+		},
+		"project_construction_date_completion": {
+			"type": "string",
+			"description": "Expected or actual construction end date.",
+			"format": "ISO Date",
+			"example": "2023-12-31",
+			"recommended": true
+		},
+		"project_construction_date_existing_building": {
+			"type": "string",
+			"description": "Year the original asset was constructed (for existing buildings).",
+			"format": "ISO Date or Year",
+			"example": "1985",
+			"optional": true
+		}
 	},
-	"project_country": {
-  	"description": "Project country.",
-  	"type": "dropdown",
-  	"constraints": "ISO3166-Alpha3",
-  	"requirement": "required",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"building_occupancy": {
+		"occupant_load": {
+			"type": "number",
+			"description": "Number of people permitted to occupy the asset.",
+			"minimum": 1,
+			"example": 600,
+			"recommended": true,
+			"applies_to_buildings": true,
+			"applies_to_infrastructure": false
+		},
+		"full_time_equivalent": {
+			"type": "number",
+			"description": "Full-Time Equivalent (FTE) represents the number of regular building occupants who spend 40 hours per week in the project building (LEED).",
+			"example": 10,
+			"recommended": true,
+			"applies_to_buildings": true,
+			"applies_to_infrastructure": false
+		},
+		"anticipated_start_building_occupancy": {
+			"type": "string",
+			"description": "Anticipated start of building occupancy (date of letter of occupancy).",
+			"format": "calendar",
+			"example": "2024-12-31",
+			"optional": true
+		},
+		"residential_units": {
+			"type": "number",
+			"description": "Number of residential units (if applicable to residential assets).",
+			"example": 98,
+			"recommended": true,
+			"applies_to_buildings": true,
+			"applies_to_infrastructure": false
+		},
+		"bedroom_count": {
+			"type": "number",
+			"description": "Number of bedrooms (for residential assets). Count bedroom units in studios as 0.5 and count 1 bedroom + den units as 1.5.",
+			"example": 4,
+			"optional": true,
+			"applies_to_buildings": true,
+			"applies_to_infrastructure": false
+		}
 	},
-	"project_postal_code": {
-  	"description": "Project postal code. Only the first 3 digits are required for Canadian projects.",
-  	"type": "string",
-  	"requirement": "required",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_climate_zone": {
-  	"description": "Climate Zone per IECC.",
-  	"type": "array",
-  	"constraints": "1A; 2A; 2B; 3A; 3B; 3C; 4A; 4B; 4C; 5A; 5B; 5C; 6A; 6B; 7; 8",
-  	"example": "Zone 3C (Warm Marine)",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
+	"project_use_and_construction_type": {
+		"asset_type": {
+			"type": "string",
+			"description": "Type of asset (building, infrastructure, or sitework).",
+			"enum": ["Building", "Infrastructure", "Sitework"],
+			"required": true
+		},
+		"omniclass_table_11_construction_entity": {
+			"type": "string",
+			"description": "The Omniclass Table 11 Construction Entity classification. Options per Level 1.",
+			"optional": true
+		},
+		"building_construction_type": {
+			"type": "string",
+			"description": "Type of building construction: New Construction, Existing Asset, Renovation, Tenant Improvement (TI).",
+			"enum": ["New Construction", "Existing Asset", "Renovation", "Tenant Improvement (TI)"],
+			"required": true,
+			"applies_to_buildings": true
+		},
+		"building_use_type": {
+			"type": "string",
+			"description": "The usage type for the building asset (selected from a predefined list).",
+			"required_if_project_type": "building",
+			"applies_to_buildings": true
+		},
+		"IBC_Construction_Type": {
+			"type": "string",
+			"description": "International Building Code (IBC) construction type.",
+			"enum": ["Type I-A", "Type I-B", "Type II-A", "Type II-B", "Type III-A", "Type III-B", "Type IV-A", "Type IV-B", "Type IV-C", "Type IV-HT", "Type V-A", "Type V-B"],
+			"optional": true
+		},
+		"infrastructure_construction_type": {
+			"type": "string",
+			"description": "Type of infrastructure construction: New Construction, Existing Asset, Major Reconstruction, Minor Renovation, Extension, Retrofit + Extension.",
+			"required": true,
+			"applies_to_infrastructure": true
+		},
+		"infrastructure_sector_type": {
+			"type": "string",
+			"description": "The infrastructure project sector type, such as transportation, water, energy, etc.",
+			"enum": ["Food", "Data/Communications", "Energy", "Industrial", "Land/Environmental", "Transportation", "Waste", "Water", "Other"],
+			"recommended": true,
+			"applies_to_infrastructure": true
+		},
+		"infrastructure_use_type": {
+			"type": "string",
+			"description": "The usage type of the infrastructure project (can select more than one option).",
+			"recommended": true,
+			"applies_to_infrastructure": true
+		},
+		"project_surroundings": {
+			"type": "string",
+			"description": "Type of area surrounding the asset: Urban, Suburban, or Rural.",
+			"optional": true
+		},
+		"development_site_type": {
+			"type": "string",
+			"description": "The type of development site: Greenfield, Brownfield, or Other.",
+			"optional": true
+		},
+		"project_historic": {
+			"type": "string",
+			"description": "Whether the asset has historical or cultural value.",
+			"enum": ["Yes", "No", "Partial"],
+			"optional": true
+		},
+		"energy_code": {
+			"type": "string",
+			"description": "The energy code applied to the project.",
+			"enum": ["ASHRAE 189.1-2020", "ASHRAE 90.1-2019", "California Title 24 2019", "IECC 2021", "NECB 2017", "NECB 2020", "NECB 2025", "NYCECC", "Massachusetts Stretch Energy Code", "Seattle Energy Code (SEC)", "Other"],
+			"recommended": true,
+			"applies_to_buildings": true
+		}
 	}
-  },
-  "latlng": {
-	"lat": {
-  	"description": "Latitude, as a signed decimal.",
-  	"type": "number",
-  	"constraints": "-90 ≤ value ≤ 90",
-  	"example": "49.24",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"lng": {
-  	"description": "Longitude, as a signed decimal.",
-  	"type": "number",
-  	"constraints": "-180 ≤ value ≤ 180",
-  	"example": "-123.11",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	}
-  },
-  "governing_code": {
-	"description": "Local City, County, or State building code version, or IBC/IRC version if no local exists.",
-	"type": "string",
-	"example": "2018 Seattle Building Code",
-	"requirement": "optional",
-	"applies_to": {
-  	"buildings": true,
-  	"infrastructure": true,
-  	"sitework": true
-	}
-  },
-  "project_data_anonymized": {
-	"description": "Has project data been anonymized?",
-	"type": "boolean",
-	"constraints": "true, false",
-	"requirement": "optional",
-	"applies_to": {
-  	"buildings": true,
-  	"infrastructure": true,
-  	"sitework": true
-	}
-  },
-  "project_certifications_commitments": {
-	"description": "Is the project pursuing third party certification(s) or submitting data to a commitment program?",
-	"type": "array",
-	"constraints": "LEED v4.0 Certified; LEED v4.0 Silver; LEED v4.0 Gold; LEED v4.0 Platinum; LEED v4.1 Certified; LEED v4.1 Silver; LEED v4.1 Gold; LEED v4.1 Platinum; Envision; BREEAM; ILFI Zero Carbon 1.0; ILFI LBC 3.1; ILFI LBC 4.0; ILFI Zero Energy; Green Globes; SE2050; AIA DDx; MEP 2040; Contractor's Commitment; Climate Positive; SE2050, UK BECD Database; CLF WBLCA v2 Benchmarking Study; Other: String",
-	"requirement": "optional",
-	"applies_to": {
-  	"buildings": true,
-  	"infrastructure": true,
-  	"sitework": true
-	}
-  }
 }
-{
-  "project_team_and_contact_information": {
-	"project_owner_contact_first_name": {
-  	"description": "First name of the project owner's contact.",
-  	"type": "string",
-  	"example": "John",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_owner_contact_last_name": {
-  	"description": "Last name of the project owner's contact.",
-  	"type": "string",
-  	"example": "Doe",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owner_organization": {
-  	"description": "Name of the owner's organization or company.",
-  	"type": "string",
-  	"example": "Low Carbon Buildings, LLC",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owner_web_domain": {
-  	"description": "Web domain of the owner’s organization.",
-  	"type": "url",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owner_country": {
-  	"description": "Location of the owner’s headquarters (country).",
-  	"type": "dropdown",
-  	"constraints": "ISO3166-Alpha3",
-  	"example": "Canada",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owner_email": {
-  	"description": "Email address of the owner or primary contact.",
-  	"type": "string",
-  	"example": "johndoe@email.com",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owner_type": {
-  	"description": "Type of owner.",
-  	"type": "dropdown",
-  	"constraints": "Government - Federal; Government - State/Province; Government - Local; Corporate; Higher-Education; Non-Profit; Public-Private Partnership; Investor-Developer; Other: String",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"owners_representative": {
-  	"description": "Name of the owner's representative organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	}
-  },
-  "org": {
-	"architect_of_record": {
-  	"description": "Architect of Record (AOR) organization.",
-  	"type": "string",
-  	"example": "HKS",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"org_office": {
-  	"description": "Studio or office within the firm organization.",
-  	"type": "string",
-  	"example": "Dallas",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"general_contractor": {
-  	"description": "General Contractor (GC) organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"mep_engineer": {
-  	"description": "MEP Engineer of Record organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"sustainability_consultant": {
-  	"description": "Green Building Consultant organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"structural_engineer": {
-  	"description": "Structural Engineer organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"civil_engineer": {
-  	"description": "Civil Engineer organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"landscape_consultant": {
-  	"description": "Landscape Consultant organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"interior_designer": {
-  	"description": "Interior Designer organization.",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": false,
-    	"sitework": false
-  	}
-	},
-	"other_project_team": {
-  	"description": "Other project stakeholder organization (role and firm name).",
-  	"type": "string",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	}
-  },
-  "project_schedule": {
-	"project_status": {
-  	"description": "Project status at the time of data submission.",
-  	"type": "dropdown",
-  	"constraints": "Active, On Hold, Complete, Cancelled",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true
-  	}
-	},
-	"project_construction_date_start": {
-  	"description": "Anticipated construction start date.",
-  	"type": "ISO Date",
-  	"example": "05/24/2022",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_construction_date_completion": {
-  	"description": "Expected or actual construction end date.",
-  	"type": "ISO Date",
-  	"requirement": "recommended",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	},
-	"project_construction_date_existing_building": {
-  	"description": "Year original asset was constructed (for existing buildings).",
-  	"type": "ISO Date (yyyy or mm/dd/yyyy)",
-  	"requirement": "optional",
-  	"applies_to": {
-    	"buildings": true,
-    	"infrastructure": true,
-    	"sitework": true
-  	}
-	}
-  }
-},
-{
-  "project_schedule": {
-	"project_status": {
-  	"type": "string",
-  	"description": "Project status at the time of data submission.",
-  	"enum": ["Active", "On Hold", "Complete", "Cancelled"],
-  	"example": "Active",
-  	"optional": true
-	},
-	"project_construction_date_start": {
-  	"type": "string",
-  	"description": "Anticipated construction start date.",
-  	"format": "ISO Date",
-  	"example": "2022-05-24",
-  	"optional": true
-	},
-	"project_construction_date_completion": {
-  	"type": "string",
-  	"description": "Expected or actual construction end date.",
-  	"format": "ISO Date",
-  	"example": "2023-12-31",
-  	"recommended": true
-	},
-	"project_construction_date_existing_building": {
-  	"type": "string",
-  	"description": "Year the original asset was constructed (for existing buildings).",
-  	"format": "ISO Date or Year",
-  	"example": "1985",
-  	"optional": true
-	}
-  },
-  "building_occupancy": {
-	"occupant_load": {
-  	"type": "number",
-  	"description": "Number of people permitted to occupy the asset.",
-  	"minimum": 1,
-  	"example": 600,
-  	"recommended": true,
-  	"applies_to_buildings": true,
-  	"applies_to_infrastructure": false
-	},
-	"full_time_equivalent": {
-  	"type": "number",
-  	"description": "Full-Time Equivalent (FTE) represents the number of regular building occupants who spend 40 hours per week in the project building (LEED).",
-  	"example": 10,
-  	"recommended": true,
-  	"applies_to_buildings": true,
-  	"applies_to_infrastructure": false
-	},
-	"anticipated_start_building_occupancy": {
-  	"type": "string",
-  	"description": "Anticipated start of building occupancy (date of letter of occupancy).",
-  	"format": "calendar",
-  	"example": "2024-12-31",
-  	"optional": true
-	},
-	"residential_units": {
-  	"type": "number",
-  	"description": "Number of residential units (if applicable to residential assets).",
-  	"example": 98,
-  	"recommended": true,
-  	"applies_to_buildings": true,
-  	"applies_to_infrastructure": false
-	},
-	"bedroom_count": {
-  	"type": "number",
-  	"description": "Number of bedrooms (for residential assets). Count bedroom units in studios as 0.5 and count 1 bedroom + den units as 1.5.",
-  	"example": 4,
-  	"optional": true,
-  	"applies_to_buildings": true,
-  	"applies_to_infrastructure": false
-	}
-  },
-  "project_use_and_construction_type": {
-	"asset_type": {
-  	"type": "string",
-  	"description": "Type of asset (building, infrastructure, or sitework).",
-  	"enum": ["Building", "Infrastructure", "Sitework"],
-  	"required": true
-	},
-	"omniclass_table_11_construction_entity": {
-  	"type": "string",
-  	"description": "The Omniclass Table 11 Construction Entity classification. Options per Level 1.",
-  	"optional": true
-	},
-	"building_construction_type": {
-  	"type": "string",
-  	"description": "Type of building construction: New Construction, Existing Asset, Renovation, Tenant Improvement (TI).",
-  	"enum": ["New Construction", "Existing Asset", "Renovation", "Tenant Improvement (TI)"],
-  	"required": true,
-  	"applies_to_buildings": true
-	},
-	"building_use_type": {
-  	"type": "string",
-  	"description": "The usage type for the building asset (selected from a predefined list).",
-  	"required_if_project_type": "building",
-  	"applies_to_buildings": true
-	},
-	"IBC_Construction_Type": {
-  	"type": "string",
-  	"description": "International Building Code (IBC) construction type.",
-  	"enum": ["Type I-A", "Type I-B", "Type II-A", "Type II-B", "Type III-A", "Type III-B", "Type IV-A", "Type IV-B", "Type IV-C", "Type IV-HT", "Type V-A", "Type V-B"],
-  	"optional": true
-	},
-	"infrastructure_construction_type": {
-  	"type": "string",
-  	"description": "Type of infrastructure construction: New Construction, Existing Asset, Major Reconstruction, Minor Renovation, Extension, Retrofit + Extension.",
-  	"required": true,
-  	"applies_to_infrastructure": true
-	},
-	"infrastructure_sector_type": {
-  	"type": "string",
-  	"description": "The infrastructure project sector type, such as transportation, water, energy, etc.",
-  	"enum": ["Food", "Data/Communications", "Energy", "Industrial", "Land/Environmental", "Transportation", "Waste", "Water", "Other"],
-  	"recommended": true,
-  	"applies_to_infrastructure": true
-	},
-	"infrastructure_use_type": {
-  	"type": "string",
-  	"description": "The usage type of the infrastructure project (can select more than one option).",
-  	"recommended": true,
-  	"applies_to_infrastructure": true
-	},
-	"project_surroundings": {
-  	"type": "string",
-  	"description": "Type of area surrounding the asset: Urban, Suburban, or Rural.",
-  	"optional": true
-	},
-	"development_site_type": {
-  	"type": "string",
-  	"description": "The type of development site: Greenfield, Brownfield, or Other.",
-  	"optional": true
-	},
-	"project_historic": {
-  	"type": "string",
-  	"description": "Whether the asset has historical or cultural value.",
-  	"enum": ["Yes", "No", "Partial"],
-  	"optional": true
-	},
-	"energy_code": {
-  	"type": "string",
-  	"description": "The energy code applied to the project.",
-  	"enum": ["ASHRAE 189.1-2020", "ASHRAE 90.1-2019", "California Title 24 2019", "IECC 2021", "NECB 2017", "NECB 2020", "NECB 2025", "NYCECC", "Massachusetts Stretch Energy Code", "Seattle Energy Code (SEC)", "Other"],
-  	"recommended": true,
-  	"applies_to_buildings": true
-	}
-  }
-}
-	]
-
